@@ -1,0 +1,10 @@
+#include "iGPSReader.hpp"
+
+iRCGPSReader::iRCGPSReader(GPSdata* data):m_data(data)
+{
+}
+
+GPSdata& iRCGPSReader::GetGPSData()
+{
+  return *m_data;
+}
