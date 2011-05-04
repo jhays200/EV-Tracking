@@ -61,9 +61,9 @@ void Garmin18Reader::ParseSentence()
   int currentRead = current_write;
   currentRead = currentRead -1 > 0 ? currentRead -1:0;
 /*  std::cout << "Might get stuck" << std::endl;*/
-  m_buffers[0].lock.lock();
+  m_buffers[currentRead].lock.lock();
   char * locBuff = strdup(m_buffers[0].m_buff);
-  m_buffers[0].lock.unlock();
+  m_buffers[currentRead].lock.unlock();
 /*  std::cout << "GTFO of the lock" << std::endl;*/
   
   
