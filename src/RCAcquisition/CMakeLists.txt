@@ -8,8 +8,8 @@ set(CPPFILES
 	#iBMSReader.cpp
 	#iGPSReader.cpp
 	#LithiumateReader.cpp
-	#SolitonReader.cpp
-	#iEMController.cpp
+	SolitonReader.cpp
+	iEMController.cpp
 	#serial.cpp
 	RCAcquisition.cpp
 	main.cpp)

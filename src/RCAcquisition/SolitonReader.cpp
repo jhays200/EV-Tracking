@@ -5,7 +5,7 @@
 //using boost::asio::ip::udp;
 
 SolitonReader::SolitonReader(Motor * data, const char * ip_address, int port)
-	:receiver_endpoint(udp::endpoint(boost::asio::ip::address_v4::from_string(ip_address), port),
+	:iEMController(data), receiver_endpoint(udp::endpoint(boost::asio::ip::address_v4::from_string(ip_address), port)),
 	socket(service)
 {
 }
@@ -25,8 +25,4 @@ void SolitonReader::Parse()
   current = (short int)buffer[10];
   temp = (short int)buffer[12];
   temp *= 10;//C*10
-  
-  m_data.SetRpm(rpm);
-  m_data.SetCurrentAccross(current);
-  m_data.SetTemp(temp);
 }

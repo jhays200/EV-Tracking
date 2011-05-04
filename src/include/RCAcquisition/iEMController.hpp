@@ -9,5 +9,5 @@ public:
   virtual void Update() = 0;
   Motor & GetMotorData();
 private:
-  Motor m_data;
+  Motor & m_data;
 };
