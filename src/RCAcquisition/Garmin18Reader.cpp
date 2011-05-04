@@ -29,12 +29,16 @@ Garmin18Reader::Garmin18Reader(GPSdata * data, const char * filePath):iGPSReader
 Garmin18Reader::~Garmin18Reader()
 {
   m_update->interrupt();
+  m_update->join();
+  delete m_update;
+  m_update = 0;
 }
 void Garmin18Reader::UpdateLoop()
 {
   while(1)
   {   
    //Find the next frame we can access, and lock it while we write
+   boost::this_thread::disable_interruption di;
     while(m_buffers[current_write].lock.try_lock())
       current_write = current_write % 5 ? current_write + 1 : 0;
 
@@ -44,26 +48,32 @@ void Garmin18Reader::UpdateLoop()
 /*    std::cout << "read: " << m_buffers[current_write].m_buff << std::endl;*/
     
     m_buffers[current_write].lock.unlock();
-
+	boost::this_thread::restore_interruption ri(di);
     //usleep(300000);
     boost::this_thread::sleep(boost::posix_time::microsec(3000));
+	//boost::this_thread::interruption_point();
   }
+  
+  //exit thread
 }
 
 void Garmin18Reader::Update()
 {
-/*  std::cout << "Update!" << std::endl;*/
+ std::cout << "Update!" << std::endl;
   ParseSentence();
 }
 
 void Garmin18Reader::ParseSentence()
 {
+	
   int currentRead = current_write;
   currentRead = currentRead -1 > 0 ? currentRead -1:0;
 /*  std::cout << "Might get stuck" << std::endl;*/
+	boost::this_thread::disable_interruption di;
   m_buffers[currentRead].lock.lock();
   char * locBuff = strdup(m_buffers[0].m_buff);
   m_buffers[currentRead].lock.unlock();
+  boost::this_thread::restore_interruption ri(di);
 /*  std::cout << "GTFO of the lock" << std::endl;*/
   
   
@@ -88,4 +98,6 @@ void Garmin18Reader::ParseSentence()
   }
     
   GetGPSData().SetData(speed, lat, longit);
+  delete [] locBuff;
+  //boost::this_thread::interruption_point();
 }

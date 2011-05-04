@@ -15,6 +15,7 @@ public:
   
 private:
 	//private methods
+	
 	void SetupDaemon();
 	static void SetupSignalHadling();
 	
