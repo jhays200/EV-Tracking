@@ -4,13 +4,14 @@ include_directories(/usr/include/boost-1_42)
 find_package(Boost COMPONENTS thread system REQUIRED)
 
 set(CPPFILES
-    Garmin18Reader.cpp
+    #Garmin18Reader.cpp
 	#iBMSReader.cpp
-	iGPSReader.cpp
+	#iGPSReader.cpp
 	#LithiumateReader.cpp
 	#SolitonReader.cpp
 	#iEMController.cpp
-	serial.cpp
+	#serial.cpp
+	RCAcquisition.cpp
 	main.cpp)
 
 add_executable(RCAcquisition ${CPPFILES})

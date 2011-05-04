@@ -1,22 +1,6 @@
 //#include "Garmin18Reader.hpp"
 //#include "LithiumateReader.hpp"
-#include "SolitonReader.hpp"
-#include <boost/thread/thread.hpp>
-#include <iostream>
-#include <unistd.h>
-#include <cstdio>
-using std::cout;
-using std::endl;
-
-struct UpdateCall
-{
-	iUpdateStradegy * _call;
-	
-	void operator()()
-	{
-		_call->Update();
-	}
-};
+#include "RCAcquisition/RCAcquisition.hpp"
 
 
 int main()
@@ -61,16 +45,8 @@ int main()
 // 		usleep(600000);
 // 	}
 
-	Motor testObj;
-	UpdateCall test;
-	test._call = new SolitonReader(&testObj, "127.0.0.1");
-	
-	for(;;)
-	{
-		test();
-		boost::this_thread::sleep(boost::posix_time::millisec(200));
-	}
-	
+	RCAcquisition test("test.log");
+	test.Start();
 	
 	
 	return 0;
