@@ -5,9 +5,11 @@ find_package(Boost COMPONENTS thread system REQUIRED)
 
 set(CPPFILES
     Garmin18Reader.cpp
-	iBMSReader.cpp
+	#iBMSReader.cpp
 	iGPSReader.cpp
-	LithiumateReader.cpp
+	#LithiumateReader.cpp
+	#SolitonReader.cpp
+	#iEMController.cpp
 	serial.cpp
 	main.cpp)
 

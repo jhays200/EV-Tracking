@@ -61,8 +61,9 @@ int main()
 // 		usleep(600000);
 // 	}
 
+	Motor testObj;
 	UpdateCall test;
-	test._call = new SolitonReader;
+	test._call = new SolitonReader(&testObj, "127.0.0.1");
 	
 	for(;;)
 	{

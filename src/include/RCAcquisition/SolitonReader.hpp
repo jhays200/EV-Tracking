@@ -45,7 +45,7 @@ const int	HIGH_MOTOR_VOLTAGE=	 	0b1000000000000000;
 class SolitonReader: public iEMController
 {
 public:
-    SolitonReader(Motor * data, const char * ip_address, int port = SOLITON_PORT);
+    SolitonReader(Motor * data, const char * ip_address = "127.0.0.1", int port = SOLITON_PORT);
     void Update();
     
 private:
@@ -53,7 +53,7 @@ private:
   //void CheckError();
   void Parse();
   
-  boost::asio::io_service io_service;
+  boost::asio::io_service service;
   udp::endpoint receiver_endpoint;
   udp::socket socket;
   

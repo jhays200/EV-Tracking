@@ -2,18 +2,19 @@
 #include "RCObjects/Motor.hpp"
 #include <boost/array.hpp>
 
-SolitonReader::SolitonReader(Motor * data, const char * port): iEMController(data), io_service(),
-    receiver_endpoint(boost::asio::ip::address_v4::from_string("127.0.0.1"), SOLITON_PORT),
-    socket(io_service)
+//using boost::asio::ip::udp;
+
+SolitonReader::SolitonReader(Motor * data, const char * ip_address, int port)
+	:receiver_endpoint(udp::endpoint(boost::asio::ip::address_v4::from_string(ip_address), port),
+	socket(service)
 {
-  socket.open(udp::v4());
 }
 
 void SolitonReader::Update()
 {
-    udp::endpoint sender_endpoint;
+    //udp::endpoint sender_endpoint;
     size_t len = socket.receive_from(
-        boost::asio::buffer(buffer), sender_endpoint);
+        boost::asio::buffer(buffer), receiver_endpoint);
     
     Parse();
 }

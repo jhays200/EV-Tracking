@@ -3,7 +3,7 @@
 
 Garmin18Reader::Garmin18Reader(GPSdata * data, const char * filePath):iGPSReader(data), serialReader(filePath)
 {
-  serialReader.SetBaud(B19200);			
+  serialReader.SetBaud(B38400);			
   serialReader.SetLocal(RAW);
   serialReader.SetParityChecking(NO_PARITY);
   serialReader.SetHardwareFlowControl(false);
