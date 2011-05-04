@@ -1,6 +1,7 @@
 #pragma once
 #include "RCAcquisition/iUpdateStradegy.hpp"
-#include "RCObjects/Motor.hpp"
+
+class Motor;
 
 class iEMController: virtual public iUpdateStradegy
 {
@@ -9,5 +10,5 @@ public:
   virtual void Update() = 0;
   Motor & GetMotorData();
 private:
-  Motor m_data;
+  Motor * m_data;
 };
