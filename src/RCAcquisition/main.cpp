@@ -7,12 +7,13 @@ void UpdateLoop(Garmin18Reader * test1)
 {
   while(1)
   {
+    test1->Update();
     std::cout << "Latitude: " << test1->GetGPSData().GetLatitude() << std::endl
 	<< "Speed: " << test1->GetGPSData().GetSpeed() << std::endl
-	<< "Longitude: " << test1->GetGPSData().GetLatitude()
+	<< "Longitude: " << test1->GetGPSData().GetLongitude()
 	<< std::endl;
 	
-    sleep(10);
+    boost::this_thread::sleep(boost::posix_time::seconds(3));
   }
 }
 
@@ -20,11 +21,11 @@ int main()
 {
   GPSdata * gps = new GPSdata();
       Garmin18Reader * test1 = new Garmin18Reader(gps,"/dev/ttyUSB0");
-
-      boost::thread thard(boost::bind(&UpdateLoop,test1));
-      std::cout << "Updating: \n";
-      while(1);
-      thard.interrupt();
+      usleep(100000);//the service needs time to get started
+//      UpdateLoop(test1);
+       boost::thread thard(boost::bind(&UpdateLoop,test1));
+       while(1);
+      //thard.interrupt();
       delete test1;
       delete gps;
       return 0;
