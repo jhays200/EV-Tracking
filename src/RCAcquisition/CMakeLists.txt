@@ -1,7 +1,8 @@
 include_directories(${HEADER_DIR}/RCAcquisition)
-include_directories(/usr/include/boost-1_42)
 
-find_package(Boost COMPONENTS system REQUIRED)
+
+find_package(Boost COMPONENTS system thread REQUIRED)
+include_directories(${Boost_INCLUDE_DIRS})
 
 set(CPPFILES
     Garmin18Reader.cpp
@@ -15,9 +16,4 @@ set(CPPFILES
 	main.cpp)
 
 add_executable(RCAcquisition ${CPPFILES})
-target_link_libraries(RCAcquisition RCObjects ${Boost_SYSTEM_LIBRARY})
-set(BOOST_LIBS thread date_time system)
-find_package(Boost COMPONENTS ${BOOST_LIBS} REQUIRED)
-target_link_libraries(RCAcquisition ${Boost_LIBRARIES})
-find_package(Threads REQUIRED)
-target_link_libraries(RCAcquisition ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(RCAcquisition RCObjects ${Boost_LIBRARIES})
