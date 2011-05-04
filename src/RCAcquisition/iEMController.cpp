@@ -1,6 +1,6 @@
 #include "iEMController.hpp"
 
-iEMController::iEmController(Motor * data):m_data(data)
+iEMController::iEMController(Motor * data):m_data(*data)
 {}
 
 Motor & iEMController::GetMotorData()

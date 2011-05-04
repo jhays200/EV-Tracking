@@ -6,7 +6,7 @@ EvSerialIO::EvSerialIO(const char * file, int open_options)
   
   if( fd == -1 )
     throw "Invalid serial file, could not establish connection.";
-  
+  tcflush(fd,TCIOFLUSH);
   tcgetattr(fd,&options);
 }
 
@@ -14,6 +14,15 @@ EvSerialIO::~EvSerialIO()
 {
   close(fd);
 }
+
+// int EvSerialIO::Getfd()
+// {
+//   return fd;
+// }
+// int EvSerialIO::FlushBuffer()
+// {
+//   return tcflush(fd,TCIOFLUSH);
+// }
 
 void EvSerialIO::SetReadOptions(bool options)
 {

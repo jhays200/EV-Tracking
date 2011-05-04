@@ -3,7 +3,7 @@ project(red_cloud_acq)
 
 #Version information
 set(${PROJECT_NAME}_MAJOR_VERSION 0)
-set(${PROJECT_NAME}_MINOR_VERSION 2)
+set(${PROJECT_NAME}_MINOR_VERSION 3)
 
 #include debug symbols
 set(CMAKE_CXX_FLAGS "-g -Wall")

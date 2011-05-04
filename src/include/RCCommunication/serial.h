@@ -180,6 +180,9 @@ public:
   //Just a destructor...
   ~EvSerialIO();
   
+  //int Getfd();
+  
+  //int FlushBuffer();
   //--Each of these you need to set manually--
   
   //Set ReadOptions (blocking/non-blocking, true/false)...
