@@ -15,6 +15,11 @@ LithiumateReader::LithiumateReader (BMS * data, const char * filePath) :
     serialReader.SetReadOptions(true);
 }
 
+LithiumateReader::~LithiumateReader()
+{
+	
+}
+
 void LithiumateReader::Update()
 {
   this->Parse();

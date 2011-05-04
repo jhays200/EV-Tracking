@@ -8,7 +8,7 @@ class iBMSReader: public iUpdateStradegy
 {
 public:
 	iBMSReader(BMS * data);
-	virtual ~iBMSReader() = 0;
+	virtual ~iBMSReader(){}
 	virtual void Update() = 0;
 	
 	std::vector<Battery> * GetBatteries();

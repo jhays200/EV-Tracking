@@ -16,20 +16,21 @@ struct ProBatteryBuf
 //TODO: Lots of things, but first off optimize and condense
 //all the buffers so we don't have to iterate over things
 //6 or so times
-class LithiumateReader: virtual public iBMSReader
+class LithiumateReader: public iBMSReader
 {
 public:
-  LithiumateReader(BMS * data, const char * filePath);
-  virtual void Update();
+	LithiumateReader(BMS * data, const char * filePath);
+	~LithiumateReader();
+	virtual void Update();
   
 private:
-  void UpdateLoop();
-  
-  void Parse();
-  
-  unsigned short int current_write;
-  unsigned short int current_read;
-  ProBatteryBuf m_buffers[5];
-  
-  EvSerialIO serialReader;
+	void UpdateLoop();
+
+	void Parse();
+
+	unsigned short int current_write;
+	unsigned short int current_read;
+	ProBatteryBuf m_buffers[5];
+
+	EvSerialIO serialReader;
 };

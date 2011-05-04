@@ -1,7 +1,9 @@
 #include "serial.h"
+#include <cstring>
 
 EvSerialIO::EvSerialIO(const char * file, int open_options)
 {
+	memset(&options, 0, sizeof(options));
   fd = open(file, open_options);
   
   if( fd == -1 )

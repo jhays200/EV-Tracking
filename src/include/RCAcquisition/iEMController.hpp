@@ -3,11 +3,11 @@
 
 class Motor;
 
-class iEMController: virtual public iUpdateStradegy
+class iEMController: public iUpdateStradegy
 {
 public:
   iEMController(Motor * motor);
-  virtual ~iEMController() = 0;
+  virtual ~iEMController(){}
   virtual void Update() = 0;
   Motor & GetMotorData();
 private:

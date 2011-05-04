@@ -29,16 +29,16 @@ void UpdateLithiumateLoop(LithiumateReader * test2)
 int main()
 {
   BMS * bms = new BMS();
-  LithiumateReader * test2 = new LithiumateReader(bms,"/dev/ttyUSB1");
+  //LithiumateReader * test2 = new LithiumateReader(bms,"/dev/ttyUSB1");
   GPSdata * gps = new GPSdata();
   Garmin18Reader * test1 = new Garmin18Reader(gps,"/dev/ttyUSB0");
   usleep(100000);//the service needs time to get started
 //UpdateLoop(test1);
   boost::thread thard1(boost::bind(&UpdateGarminLoop,test1));
-  boost::thread thard2(boost::bind(&UpdateLithiumateLoop,test2));
+  //boost::thread thard2(boost::bind(&UpdateLithiumateLoop,test2));
   while(1);
   thard1.interrupt();
-  thard2.interrupt();
+  //thard2.interrupt();
   delete test1;
   delete gps;
   delete bms;

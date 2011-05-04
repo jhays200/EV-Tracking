@@ -9,6 +9,7 @@ BMS & iBMSReader::GetBMS()
 {
   return *m_data;
 }
+
 iBMSReader::iBMSReader(BMS * data):m_data(data)
 {
 }

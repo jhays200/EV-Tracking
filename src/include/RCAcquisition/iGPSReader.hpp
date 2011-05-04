@@ -2,11 +2,11 @@
 #include "iUpdateStradegy.hpp"
 #include "RCObjects/GPSdata.hpp"
 
-class iGPSReader: virtual public iUpdateStradegy
+class iGPSReader: public iUpdateStradegy
 {
 public:
 	iGPSReader(GPSdata * data);
-	virtual ~iGPSReader() = 0;
+	virtual ~iGPSReader(){}
 	virtual void Update() = 0;
 	GPSdata & GetGPSData();
 private:

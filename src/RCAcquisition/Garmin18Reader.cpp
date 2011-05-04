@@ -10,7 +10,7 @@ Garmin18Reader::Garmin18Reader(GPSdata * data, const char * filePath):iGPSReader
 	      current_write(0),current_read(0)
 {
   serialReader.SetBaud(B38400);			
-  serialReader.SetLocal(RAW);
+  serialReader.SetLocal(OTHER, B38400 | CS8 | CLOCAL | CREAD);
   serialReader.SetParityChecking(NO_PARITY);
   serialReader.SetHardwareFlowControl(false);
   serialReader.SetSoftwareFlowControl(false);
@@ -19,9 +19,9 @@ Garmin18Reader::Garmin18Reader(GPSdata * data, const char * filePath):iGPSReader
   serialReader.SetReadOptions(true);
   
   //System config functions
-  system("clear");
-  system("stty -F /dev/ttyUSB0 sane 38400");
-  system("clear");
+  //system("clear");
+  //system("stty -F /dev/ttyUSB0 sane 38400");
+  //system("clear");
   
   m_update = new boost::thread(boost::bind(&Garmin18Reader::UpdateLoop,this));
 }
