@@ -1,6 +1,7 @@
 #include "SolitonReader.hpp"
 #include "RCObjects/Motor.hpp"
 #include <boost/array.hpp>
+
 SolitonReader::SolitonReader(Motor * data, const char * port): iEMController(data), io_service(),
     receiver_endpoint(boost::asio::ip::address_v4::from_string("127.0.0.1"), SOLITON_PORT),
     socket(io_service)
