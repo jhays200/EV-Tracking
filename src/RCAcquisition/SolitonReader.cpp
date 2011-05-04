@@ -11,6 +11,11 @@ SolitonReader::SolitonReader(Motor * data, const char * ip_address, int port)
 {
 }
 
+SolitonReader::~SolitonReader()
+{
+	socket.close();
+}
+
 void SolitonReader::Update()
 {
     //udp::endpoint sender_endpoint;

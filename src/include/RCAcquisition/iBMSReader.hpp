@@ -4,15 +4,15 @@
 
 #include <vector>
 
-class iBMSReader: virtual public iUpdateStradegy
+class iBMSReader: public iUpdateStradegy
 {
 public:
-  iBMSReader(BMS * data);
-  
-  virtual void Update() = 0;
-  
-  std::vector<Battery> * GetBatteries();
-  BMS & GetBMS();
+	iBMSReader(BMS * data);
+	virtual ~iBMSReader() = 0;
+	virtual void Update() = 0;
+	
+	std::vector<Battery> * GetBatteries();
+	BMS & GetBMS();
 private:
-  BMS * m_data;
+	BMS * m_data;
 };
