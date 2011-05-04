@@ -1,5 +1,6 @@
 #pragma once
 #include <boost/asio.hpp>
+#include <boost/thread.hpp>
 using boost::asio::ip::udp;
 
 #include "iEMController.hpp"
@@ -8,6 +9,7 @@ const int SOLITON_PORT = 48879;
 const int MAXBUFLEN = 100;
 
 //Error / status codes
+
 const int STARTING_UP =	 			0b0000000000000000;
 const int PRECHARGING =	 			0b0000000000000001;
 const int ENGAGING_CONTACTORS =		0b0000000000000010;
@@ -46,18 +48,20 @@ class SolitonReader: public iEMController
 {
 public:
     SolitonReader(Motor * data, const char * ip_address = "127.0.0.1", int port = SOLITON_PORT);
-    void Update();
-    
+    void Update();    
 private:
   //TODO: Use the message protocol to make CheckError useful
   //void CheckError();
   void Parse();
   
+  void UpdateLoop();
+  
   boost::asio::io_service service;
   udp::endpoint receiver_endpoint;
   udp::socket socket;
   
-  char	buffer[30];
+  boost::thread m_update;
+  char	buffer[256];
   double rpm;
   double current;
   double temp;

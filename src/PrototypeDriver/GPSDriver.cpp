@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <fstream>
-#include "../include/RCSerial/serial.h"
+#include "serial.h"
 
 using namespace std;
 

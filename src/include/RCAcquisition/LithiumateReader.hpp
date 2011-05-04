@@ -1,4 +1,5 @@
 #pragma once
+#include <boost/thread.hpp>
 #include "iBMSReader.hpp"
 #include "serial.h"
 
@@ -12,8 +13,11 @@ public:
   virtual void Update();
   
 private:
+  void UpdateLoop();
+  
   void Parse();
   
+  boost::thread m_update;
   char context_buffer[32];
   char aux_buffer[23];
   char cell_volt_buffer[100];

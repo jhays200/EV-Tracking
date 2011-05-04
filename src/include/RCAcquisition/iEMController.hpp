@@ -1,8 +1,8 @@
 #pragma once
-#include "iUpdateStradegy.hpp"
+#include "RCAcquisition/iUpdateStradegy.hpp"
 #include "RCObjects/Motor.hpp"
 
-class iEMController: public iUpdateStradegy
+class iEMController: virtual public iUpdateStradegy
 {
 public:
   iEMController(Motor * motor);
