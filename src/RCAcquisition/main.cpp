@@ -1,5 +1,6 @@
 #include "RCAcquisition.hpp"
-
+using namespace std;
+#define thard thread
 // void UpdateGarminLoop(Garmin18Reader * test1)
 // {
 //   while(1)
@@ -23,8 +24,24 @@
 
 int main()
 {
+// 	DBaseInterface * dbase = new DBaseInterface();
+// 	cout << "Inserting..." << endl;
+// 	  dbase->GPSInsert(100,
+// 	  200,
+// 	  30);
+// 	cout << "Inserted" << endl;
+// 	return 0;
 	RCAcquisition test("./data.log");
-	test.Start();
+	boost::thard(boost::bind(&RCAcquisition::Start,&test));
+	
+	while(1)
+	{
+	  string command;
+	  cout << "quit\nquery\n__________" << endl;
+	  cin >> command;
+	  if(command == "quit")
+	    break;
+	}
 	return 0;
 }	
 //   BMS * bms = new BMS();

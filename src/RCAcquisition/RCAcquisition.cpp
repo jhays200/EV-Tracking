@@ -49,6 +49,10 @@ RCAcquisition::~RCAcquisition()
 	//m_activeThreads.join_all();
 }
 
+void RCAcquisition::Query(string str)
+{
+  dbase.Query(str);
+}
 //NOTE: Where the show starts
 void RCAcquisition::Start()
 {
@@ -58,9 +62,9 @@ void RCAcquisition::Start()
 	//setup daemon and signal handling
 	//SetupDaemon();
 	SetupSignalHadling();
-	printf("Made it past signal setup\n");
+/*	printf("Made it past signal setup\n");*/
 	m_updates[0]._call = new Garmin18Reader(&data, "/dev/ttyUSB0");
-	printf("Made it the Garmin Setup\n");
+/*	printf("Made it the Garmin Setup\n");*/
 	boost::this_thread::sleep(boost::posix_time::millisec(750));
 	
 	while(daemon)
@@ -73,10 +77,10 @@ void RCAcquisition::Start()
 		printf("Longitude: %f\n", data.GetLongitude());
 		dbase.GPSInsert(data.GetLatitude(),data.GetLongitude(),data.GetSpeed());
 		
-		boost::this_thread::sleep(boost::posix_time::millisec(500));
+		boost::this_thread::sleep(boost::posix_time::seconds(2));
 	}
 	
-	fprintf(m_logFile, "Made it outside the loop\n");
+/*	fprintf(m_logFile, "Made it outside the loop\n");*/
 	
 	delete m_updates[0]._call;
 	m_updates[0]._call = 0;

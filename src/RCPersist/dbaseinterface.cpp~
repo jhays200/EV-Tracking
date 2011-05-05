@@ -7,46 +7,43 @@ using std::cout;
 using std::string;
 #include <mysql/my_global.h>
 
-DBaseInterface::DBaseInterface()
+DBaseInterface::DBaseInterface():
+    user("root"),server("127.0.0.1"),database("jp"),password("maverick"),
+    t(server.c_str(),user.c_str(),database.c_str(),
+		password.c_str())
 {
-	char query[256];
-
-
-
-	user = "user";
-
-	server = "127.0.0.1";
-
-	database = "jp";
-
-	password = "red_cloud";
-
-	RCDatabaseTest t(server.c_str(),user.c_str(),database.c_str(),
-		password.c_str());
-/*
-	printf("Enter a query: ");
-	std::cin.getline(query, 256);
-
-	t.Query(query);
-
-	result = t.Fetch();
-	while(!result.empty())
-	{
-		printf("\n",result.c_str());
-		result = t.Fetch();
-	}*/
-
+// 	char query[256];
+// 
+// 	printf("Enter a query: ");
+// 	std::cin.getline(query, 256);
+// 
+// 	t.Query(query);
+// 
+// 	result = t.Fetch();
+// 	while(!result.empty())
+// 	{
+// 		printf("\n",result.c_str());
+// 		result = t.Fetch();
+// 	}
 }
 
+void DBaseInterface::Query(string str)
+{
+  t.Query(str.c_str());
+  result = t.Fetch();
+  while(!result.empty())
+  {
+	  printf("\n",result.c_str());
+	  result = t.Fetch();
+  }
+}
 void DBaseInterface::BMSInsert(double avgBattCurrent,
 	double avgBatteryResist,
 	double avgBatteryVolt,
 	double avgBattTemp)
 {
 	char buffer[256];
-	RCDatabaseTest t(server.c_str(),user.c_str(),database.c_str(),
-		password.c_str());
-
+	
 	string query = "INSERT INTO BMS (AvgVolts, AvgAmps, AvgResist, AvgTemp, trip_id) VALUES( ";
 	sprintf(buffer,"%f",avgBatteryVolt);
 	query += buffer;
@@ -75,11 +72,9 @@ void DBaseInterface::GPSInsert(
 	double longitude,
 	float speed)
 {
-		char buffer[256];
-	RCDatabaseTest t(server.c_str(),user.c_str(),database.c_str(),
-		password.c_str());
-
-	string query = "INSERT INTO GPS_DATA (trip_id, Longitude, Lattitude, speed) VALUES((select MAX(trip_id) from trip),";
+	char buffer[256];
+	
+	string query = "INSERT INTO GPS_DATA (Longitude, Lattitude, Speed) VALUES(";
 	sprintf(buffer,"%f",longitude);
 	query += buffer;
 	query += ", ";
@@ -88,10 +83,10 @@ void DBaseInterface::GPSInsert(
 	query += ", ";
 			sprintf(buffer,"%f",speed);
 		query += buffer;
-	query += ", ";
+	//query += ", ";
 // 			sprintf(buffer,"%i",direction);
 // 		query += buffer;
-	query += ", ";
+	//query += ", ";
 	query += ");";
 	t.Query(query.c_str());
 }
@@ -103,8 +98,6 @@ void DBaseInterface::ZillaInsert(	double currentAcross,
 	double temp)
 {
 		char buffer[256];
-	RCDatabaseTest t(server.c_str(),user.c_str(),database.c_str(),
-		password.c_str());
 
 	string query = "INSERT INTO MOTOR_DATA (trip_id, Speed, AvgDutyCycles, RPM, CurrentAccross) VALUES((select MAX(trip_id) from trip), ";
 	sprintf(buffer,"%f",speed);
@@ -129,8 +122,6 @@ void DBaseInterface::ZillaInsert(	double currentAcross,
 	double volt)
 	{
 				char buffer[256];
-	RCDatabaseTest t(server.c_str(),user.c_str(),database.c_str(),
-		password.c_str());
 
 	string query = "INSERT INTO BATTERY (BMS_ID, Battery_ID, Volts, Amps, Resist, Temp)	VALUES((select max(bms_id) from bms), ";
 	sprintf(buffer,"%i",battnum);

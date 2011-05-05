@@ -59,23 +59,23 @@ void Garmin18Reader::UpdateLoop()
 
 void Garmin18Reader::Update()
 {
- std::cout << "Update!" << std::endl;
- ParseSentence();
+/*  std::cout << "Update!" << std::endl;*/
+  ParseSentence();
 }
 
 void Garmin18Reader::ParseSentence()
 {
   int currentRead = current_write;
   currentRead = currentRead -1 > 0 ? currentRead -1:0;
-  std::cout << "Might get stuck" << std::endl;
+/*  std::cout << "Might get stuck" << std::endl;*/
 	//boost::this_thread::disable_interruption di;
   m_buffers[currentRead].lock.lock();
-  std::cout << "Locked" << std::endl;
+//   std::cout << "Locked" << std::endl;
   char * locBuff = strdup(m_buffers[0].m_buff);
-  std::cout << "Unlocking" << std::endl;
+/*  std::cout << "Unlocking" << std::endl;*/
   m_buffers[currentRead].lock.unlock();
   //boost::this_thread::restore_interruption ri(di);
-  std::cout << "GTFO of the lock" << std::endl;
+/*  std::cout << "GTFO of the lock" << std::endl;*/
   
   
   char valid, lat_dir, long_dir;

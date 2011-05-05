@@ -1,13 +1,16 @@
 #include "RCPersist/mysqltest.h"
 #include <string>
 using std::string;
+
 class DBaseInterface
 {
+	
 	string server;
 	string user;
 	string database;
 	string result;
 	string password;
+	RCDatabaseTest t;
 public:
 	DBaseInterface();
 	void BMSInsert(double avgBattCurrent,

@@ -2,7 +2,7 @@
 #include <string>
 #include "mysqltest.h"
 #include <cstdio>
-#include "dbaseinterface.h"
+#include "RCPersist/dbaseinterface.h"
 #include "classes.h"
 using std::cin;
 using std::cout;
@@ -13,11 +13,9 @@ int main()
 {
 	
 	DBaseInterface * dbase = new DBaseInterface();
-	dbase->BMSInsert(200,
-	300,
-	400,
-	90,
-	20);
+	dbase->GPSInsert(100,
+	200,
+	30);
 
 
 //	void GPSInsert(int direction,

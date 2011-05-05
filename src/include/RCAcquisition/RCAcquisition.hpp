@@ -13,7 +13,7 @@ public:
   ~RCAcquisition();
   void Start();
   static void Stop(int sig);
-  
+  void Query(string);
 private:
 	//private methods
 	
