@@ -3,7 +3,7 @@ include_directories(${HEADER_DIR}/RCAcquisition)
 
 find_package(Boost COMPONENTS system thread REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
-
+include_directories(/usr/include/mysql)
 set(CPPFILES
     Garmin18Reader.cpp
 	iBMSReader.cpp
@@ -16,4 +16,4 @@ set(CPPFILES
 	main.cpp)
 
 add_executable(RCAcquisition ${CPPFILES})
-target_link_libraries(RCAcquisition RCObjects ${Boost_LIBRARIES})
+target_link_libraries(RCAcquisition RCObjects RCPersist ${Boost_LIBRARIES})

@@ -71,6 +71,7 @@ void RCAcquisition::Start()
 		printf("\nLatitude: %f\n", data.GetLatitude());
 		printf("Speed: %f\n", data.GetSpeed());
 		printf("Longitude: %f\n", data.GetLongitude());
+		dbase.GPSInsert(data.GetLatitude(),data.GetLongitude(),data.GetSpeed());
 		
 		boost::this_thread::sleep(boost::posix_time::millisec(500));
 	}

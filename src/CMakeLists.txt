@@ -16,7 +16,7 @@ include_directories(${HEADER_DIR})
 
 #static libraries
 add_subdirectory(RCObjects "./lib")
-#add_subdirectory(RCPersist)
+add_subdirectory(RCPersist)
 
 #executables
 add_subdirectory(RCAcquisition "./bin")
