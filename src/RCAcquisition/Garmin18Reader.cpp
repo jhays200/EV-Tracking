@@ -19,9 +19,9 @@ Garmin18Reader::Garmin18Reader(GPSdata * data, const char * filePath):iGPSReader
   serialReader.SetReadOptions(true);
   
   //System config functions
-  //system("clear");
-  //system("stty -F /dev/ttyUSB0 sane 38400");
-  //system("clear");
+  system("clear");
+  system("stty -F /dev/ttyUSB0 sane 38400");
+  system("clear");
   
   m_update = new boost::thread(boost::bind(&Garmin18Reader::UpdateLoop,this));
 }
