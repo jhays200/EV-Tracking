@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 cmake_minimum_required(VERSION 2.8)
 project(red_cloud_acq)
 
@@ -20,3 +21,24 @@ add_subdirectory(RCObjects "./lib")
 
 #executables
 add_subdirectory(RCAcquisition "./bin") 
+=======
+include_directories(${HEADER_DIR}/RCAcquisition)
+
+
+find_package(Boost COMPONENTS system thread REQUIRED)
+include_directories(${Boost_INCLUDE_DIRS})
+include_directories(/usr/include/mysql)
+set(CPPFILES
+    Garmin18Reader.cpp
+	iBMSReader.cpp
+	iGPSReader.cpp
+	LithiumateReader.cpp
+	serial.cpp
+	iEMController.cpp
+	SolitonReader.cpp
+	RCAcquisition.cpp
+	main.cpp)
+
+add_executable(RCAcquisition ${CPPFILES})
+target_link_libraries(RCAcquisition RCObjects RCPersist ${Boost_LIBRARIES})
+>>>>>>> jeff

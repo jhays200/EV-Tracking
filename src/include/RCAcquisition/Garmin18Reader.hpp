@@ -4,7 +4,7 @@
 #include "iGPSReader.hpp"
 #include "serial.h"
 
-class Garmin18Reader:virtual public iGPSReader
+class Garmin18Reader:public iGPSReader
 {
 public:
   Garmin18Reader(GPSdata * data, const char * filePath);

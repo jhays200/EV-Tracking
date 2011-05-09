@@ -4,6 +4,7 @@
 #include "UpdateCall.hpp"
 #include <boost/thread.hpp>
 #include <cstdio>
+#include "RCPersist/dbaseinterface.h"
 
 class RCAcquisition
 {
@@ -15,6 +16,7 @@ public:
   
 private:
 	//private methods
+	
 	void SetupDaemon();
 	static void SetupSignalHadling();
 	
@@ -22,6 +24,7 @@ private:
 	//private data stuff
   static bool daemon;
   
+  DBaseInterface dbase;
   std::vector<UpdateCall> m_updates;
   boost::thread_group m_activeThreads;
   FILE * m_logFile;

@@ -1,6 +1,6 @@
 #ifndef MYSQL_INTERFACE
 #define MYSQL_INTERFACE
-#include <WinSock.h>
+//#include <WinSock.h>
 #include <mysql.h>
 #include <string>
 using std::string;

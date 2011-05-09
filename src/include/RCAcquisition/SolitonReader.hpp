@@ -48,6 +48,7 @@ class SolitonReader: public iEMController
 {
 public:
     SolitonReader(Motor * data, const char * ip_address = "127.0.0.1", int port = SOLITON_PORT);
+	~SolitonReader();
     void Update();    
 private:
   //TODO: Use the message protocol to make CheckError useful

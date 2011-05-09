@@ -1,33 +1,47 @@
-#include <iostream>
-#include <boost/concept_check.hpp>
-#include <boost/thread.hpp>
-#include "RCAcquisition/Garmin18Reader.hpp"
+#include "RCAcquisition.hpp"
 
-void UpdateLoop(Garmin18Reader * test1)
-{
-  while(1)
-  {
-    std::cout << "Latitude: " << test1->GetGPSData().GetLatitude() << std::endl
-	<< "Speed: " << test1->GetGPSData().GetSpeed() << std::endl
-	<< "Longitude: " << test1->GetGPSData().GetLatitude()
-	<< std::endl;
-	
-    sleep(10);
-  }
-}
+// void UpdateGarminLoop(Garmin18Reader * test1)
+// {
+//   while(1)
+//   {
+//     test1->Update();
+//     std::cout << "Latitude: " << test1->GetGPSData().GetLatitude() << std::endl
+// 	<< "Speed: " << test1->GetGPSData().GetSpeed() << std::endl
+// 	<< "Longitude: " << test1->GetGPSData().GetLongitude()
+// 	<< std::endl;
+// 	
+//     boost::this_thread::sleep(boost::posix_time::seconds(3));
+//   }
+// }
+// 
+// void UpdateLithiumateLoop(LithiumateReader * test2)
+// {
+//   int i = 0;
+//   for(std::vector<Battery>::iterator itr = test2->GetBatteries()->begin(); itr < test2->GetBatteries()->end(); ++itr,++i)
+//     std::cout << "Current for battery (" << i << "): " << itr->Getcurrent() << std::endl;
+// }
 
 int main()
 {
-  GPSdata * gps = new GPSdata();
-      Garmin18Reader * test1 = new Garmin18Reader(gps,"/dev/ttyUSB0");
-
-      boost::thread thard(boost::bind(&UpdateLoop,test1));
-      std::cout << "Updating: \n";
-      while(1);
-      thard.interrupt();
-      delete test1;
-      delete gps;
-      return 0;
+	RCAcquisition test("./data.log");
+	test.Start();
+	return 0;
+}	
+//   BMS * bms = new BMS();
+//   //LithiumateReader * test2 = new LithiumateReader(bms,"/dev/ttyUSB1");
+//   GPSdata * gps = new GPSdata();
+//   Garmin18Reader * test1 = new Garmin18Reader(gps,"/dev/ttyUSB0");
+//   usleep(100000);//the service needs time to get started
+// //UpdateLoop(test1);
+//   boost::thread thard1(boost::bind(&UpdateGarminLoop,test1));
+//   //boost::thread thard2(boost::bind(&UpdateLithiumateLoop,test2));
+//   while(1);
+//   thard1.interrupt();
+//   //thard2.interrupt();
+//   delete test1;
+//   delete gps;
+//   delete bms;
+//	return 0;
 //  	GPSdata * testGPS;
 //  	Garmin18Reader * test2;
 // 	ofstream fout("gps.txt");
@@ -121,4 +135,4 @@ int main()
 //	}
       //delete testMotor;
 // 	fout.close();
-}
+//}

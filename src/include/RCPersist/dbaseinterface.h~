@@ -1,5 +1,6 @@
-#include "mysqltest.h"
-
+#include "RCPersist/mysqltest.h"
+#include <string>
+using std::string;
 class DBaseInterface
 {
 	string server;
@@ -12,11 +13,9 @@ public:
 	void BMSInsert(double avgBattCurrent,
 	double avgBatteryResist,
 	double avgBatteryVolt,
-	double avgBattTemp,
-	int charge);
+	double avgBattTemp);
 
-	void GPSInsert(int direction,
-	double latitude,
+	void GPSInsert(double latitude,
 	double longitude,
 	float speed);
 

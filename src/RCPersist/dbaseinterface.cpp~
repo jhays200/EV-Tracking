@@ -13,13 +13,13 @@ DBaseInterface::DBaseInterface()
 
 
 
-	user = "root";
+	user = "user";
 
 	server = "127.0.0.1";
 
 	database = "jp";
 
-	password = "maverick";
+	password = "red_cloud";
 
 	RCDatabaseTest t(server.c_str(),user.c_str(),database.c_str(),
 		password.c_str());

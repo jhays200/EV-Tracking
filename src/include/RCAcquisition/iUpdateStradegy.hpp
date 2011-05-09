@@ -11,6 +11,6 @@ struct ProBuffer
 class iUpdateStradegy
 {
 public:
-	//virtual ~iUpdateStradegy() = 0;
+	virtual ~iUpdateStradegy() { }
 	virtual void Update() = 0;
 };
