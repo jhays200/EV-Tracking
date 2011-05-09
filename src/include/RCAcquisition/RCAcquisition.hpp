@@ -1,10 +1,11 @@
 #pragma once
 #include <vector>
 #include "RCObjects/Time.hpp"
-#include "UpdateCall.hpp"
 #include <boost/thread.hpp>
 #include <cstdio>
 #include "RCPersist/dbaseinterface.h"
+
+class iUpdateStradegy;
 
 class RCAcquisition
 {
@@ -25,7 +26,7 @@ private:
   static bool daemon;
   
   DBaseInterface dbase;
-  std::vector<UpdateCall> m_updates;
+  std::vector<iUpdateStradegy *> m_updates;
   boost::thread_group m_activeThreads;
   FILE * m_logFile;
 };

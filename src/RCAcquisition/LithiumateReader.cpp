@@ -1,6 +1,7 @@
 #include "LithiumateReader.hpp"
 #include "RCObjects/Battery.hpp"
 #include <boost/thread.hpp>
+#include <boost/bind.hpp>
 
 LithiumateReader::LithiumateReader (BMS * data, const char * filePath) : 
   iBMSReader(data), serialReader ( filePath )
@@ -13,11 +14,14 @@ LithiumateReader::LithiumateReader (BMS * data, const char * filePath) :
     serialReader.SetOutputOptions(RAW);
     //Set up reading for a "blocking" read. Program will not execute until it receives data.
     serialReader.SetReadOptions(true);
+	
+	m_updateLoop = boost::thread(boost::bind(&LithiumateReader::UpdateLoop,this));
 }
 
 LithiumateReader::~LithiumateReader()
 {
-	
+	m_updateLoop.interrupt();
+	m_updateLoop.join();
 }
 
 void LithiumateReader::Update()
@@ -29,6 +33,8 @@ void LithiumateReader::UpdateLoop()
 {
   while(1)
   {
+	  boost::this_thread::disable_interruption di;
+	  
     while(m_buffers[current_write].m_lock.try_lock())
       current_write = current_write % 5 ? current_write + 1 : 0;
     
@@ -39,6 +45,8 @@ void LithiumateReader::UpdateLoop()
     serialReader.Read(m_buffers[current_write].cell_res_buffer,100);
 
     m_buffers[current_write].m_lock.unlock();
+	
+	boost::this_thread::restore_interruption ri(di);
     
     boost::this_thread::sleep(boost::posix_time::seconds(1));
   }
@@ -65,4 +73,10 @@ void LithiumateReader::Parse()
     m_batteries[i].Setresist((double)(100 * (int)local_cell_res_buffer[i]));
     m_batteries[i].Settemp((float)((int)local_cell_temp_buffer[i] - 0x80));
   }
+  
+  delete [] local_context_buffer;
+  delete [] local_aux_buffer;
+  delete [] local_cell_volt_buffer;
+  delete [] local_cell_temp_buffer;
+  delete [] local_cell_res_buffer;
 }

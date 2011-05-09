@@ -33,4 +33,6 @@ private:
 	ProBatteryBuf m_buffers[5];
 
 	EvSerialIO serialReader;
+	
+	boost::thread m_updateLoop;
 };

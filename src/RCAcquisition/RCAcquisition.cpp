@@ -4,6 +4,7 @@
 #include <signal.h>
 #include <unistd.h>
 #include "RCAcquisition/Garmin18Reader.hpp"
+#include "RCAcquisition/LithiumateReader.hpp"
 
 using namespace std;
 using namespace boost;
@@ -38,48 +39,46 @@ RCAcquisition::~RCAcquisition()
 	fclose(m_logFile);
 	m_logFile = 0;
 	m_updates.clear();
-	//NOTE Here is where the threads would need to end
-// 	for(vector<boost::thread>::iterator i = m_activeThreads.begin();
-// 		i != m_activeThreads.end();
-// 		++i)
-// 	{
-// 		i->join();
-// 	}
-	
-	//m_activeThreads.join_all();
+
 }
 
 //NOTE: Where the show starts
 void RCAcquisition::Start()
 {
-	GPSdata data;
+	GPSdata dataGPS;
+	BMS dataBM;
+	
 	daemon = true;
 	
 	//setup daemon and signal handling
 	//SetupDaemon();
 	SetupSignalHadling();
 	printf("Made it past signal setup\n");
-	m_updates[0]._call = new Garmin18Reader(&data, "/dev/ttyUSB0");
+	
+	//construct update classes
+	m_updates[0] = new Garmin18Reader(&dataGPS, "/dev/ttyUSB0");
+	//m_updates[1] = new LithiumateReader(&dataBM, "/dev/ttyUSB1");
 	printf("Made it the Garmin Setup\n");
 	boost::this_thread::sleep(boost::posix_time::millisec(750));
 	
 	while(daemon)
 	{
-		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[0]._call));
+		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[0]));
+		//m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[1]));
 		m_activeThreads.join_all();
 		
-		printf("\nLatitude: %f\n", data.GetLatitude());
-		printf("Speed: %f\n", data.GetSpeed());
-		printf("Longitude: %f\n", data.GetLongitude());
-		dbase.GPSInsert(data.GetLatitude(),data.GetLongitude(),data.GetSpeed());
+		printf("\nLatitude: %f\n", dataGPS.GetLatitude());
+		printf("Speed: %f\n", dataGPS.GetSpeed());
+		printf("Longitude: %f\n", dataGPS.GetLongitude());
+		dbase.GPSInsert(dataGPS.GetLatitude(),dataGPS.GetLongitude(),dataGPS.GetSpeed());
 		
 		boost::this_thread::sleep(boost::posix_time::millisec(500));
 	}
 	
 	fprintf(m_logFile, "Made it outside the loop\n");
 	
-	delete m_updates[0]._call;
-	m_updates[0]._call = 0;
+	delete m_updates[0];
+	//delete m_updates[1];
 	
 	exit(EXIT_SUCCESS);
 }

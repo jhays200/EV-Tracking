@@ -1,6 +1,6 @@
 #include "Garmin18Reader.hpp"
 #include "iGPSReader.hpp"
-#include <iostream>
+//#include <iostream>
 #include <cstdio>
 #include <unistd.h>
 #include <stdlib.h>
@@ -59,7 +59,7 @@ void Garmin18Reader::UpdateLoop()
 
 void Garmin18Reader::Update()
 {
- std::cout << "Update!" << std::endl;
+ //std::cout << "Update!" << std::endl;
  ParseSentence();
 }
 
@@ -67,27 +67,30 @@ void Garmin18Reader::ParseSentence()
 {
   int currentRead = current_write;
   currentRead = currentRead -1 > 0 ? currentRead -1:0;
-  std::cout << "Might get stuck" << std::endl;
+ // std::cout << "Might get stuck" << std::endl;
 	//boost::this_thread::disable_interruption di;
   m_buffers[currentRead].lock.lock();
-  std::cout << "Locked" << std::endl;
+  //std::cout << "Locked" << std::endl;
   char * locBuff = strdup(m_buffers[0].m_buff);
-  std::cout << "Unlocking" << std::endl;
+  //std::cout << "Unlocking" << std::endl;
   m_buffers[currentRead].lock.unlock();
   //boost::this_thread::restore_interruption ri(di);
-  std::cout << "GTFO of the lock" << std::endl;
+  //std::cout << "GTFO of the lock" << std::endl;
   
   
   char valid, lat_dir, long_dir;
+  char north, east;
   double lat, longit, speed;
+  double unchangedlatitude, unchangedlongitude;
+  int num;
   char * _buffer = strchr(locBuff, ',');
   
 /*  std::cout << "_buffer = " << _buffer << std::endl;*/
   strtok(_buffer,"*");
 /*  printf("_bufffer: %s\n", _buffer);*/
   
-  if(sscanf(_buffer,",%*lf,%c,%lf,%*c,%lf,%*c,%lf,%*lf,%*lf,%*lf,%*c",
-	 &valid, &lat, &longit, &speed) < 3)
+  if(sscanf(_buffer,",%*lf,%c,%lf,%c,%lf,%c,%lf,%*lf,%*lf,%*lf,%*c",
+	 &valid, &unchangedlatitude,&north, &unchangedlongitude,&east, &speed) < 3)
   {
     GetGPSData().SetValid(false);
 /*    printf("Valid?: false\n");*/
@@ -97,7 +100,18 @@ void Garmin18Reader::ParseSentence()
     GetGPSData().SetValid(true);
 /*    printf("Valid?: true\n");*/
   }
-    
+	
+	unchangedlatitude = unchangedlatitude / 100;
+	num = unchangedlatitude;
+	lat = num + (( (unchangedlatitude - num )/60) * 100);
+	unchangedlongitude = unchangedlongitude / 100;
+	num = unchangedlongitude;
+	longit = num + (( (unchangedlongitude - num)/60) * 100);
+	if (north == 'S')
+		lat = - lat;
+	if (east == 'W')
+		longit = - longit;
+	
   GetGPSData().SetData(speed, lat, longit);
   delete [] locBuff;
   //boost::this_thread::interruption_point();

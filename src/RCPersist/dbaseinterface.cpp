@@ -19,7 +19,7 @@ DBaseInterface::DBaseInterface()
 
 	database = "jp";
 
-	password = "maverick";
+	password = "starwars";
 
 	RCDatabaseTest t(server.c_str(),user.c_str(),database.c_str(),
 		password.c_str());
@@ -79,7 +79,7 @@ void DBaseInterface::GPSInsert(
 	RCDatabaseTest t(server.c_str(),user.c_str(),database.c_str(),
 		password.c_str());
 
-	string query = "INSERT INTO GPS_DATA (trip_id, Longitude, Lattitude, speed) VALUES((select MAX(trip_id) from trip),";
+	string query = "INSERT INTO GPS_DATA (trip_id, Longitude, Lattitude, speed) VALUES((select MAX(trip_id) from TRIP),";
 	sprintf(buffer,"%f",longitude);
 	query += buffer;
 	query += ", ";
@@ -88,10 +88,10 @@ void DBaseInterface::GPSInsert(
 	query += ", ";
 			sprintf(buffer,"%f",speed);
 		query += buffer;
-	query += ", ";
-// 			sprintf(buffer,"%i",direction);
-// 		query += buffer;
-	query += ", ";
+// 	query += ", ";
+// // 			sprintf(buffer,"%i",direction);
+// // 		query += buffer;
+// 	query += ", ";
 	query += ");";
 	t.Query(query.c_str());
 }

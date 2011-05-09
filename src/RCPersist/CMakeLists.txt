@@ -3,8 +3,8 @@ include_directories(/usr/include/mysql)
 set(CPPFILES
     dbaseinterface.cpp
     mysqltest.cpp)
-find_library(MYSQL mysqlclient)
+#find_library(MYSQL mysqlclient)
 
 add_library(RCPersist STATIC ${CPPFILES})
 
-target_link_libraries(RCPersist ${MYSQL})
+target_link_libraries(RCPersist mysqlclient)
