@@ -3,6 +3,12 @@
 
 class Motor;
 
+/*******************************************
+ * Class: iEMController
+ * Purpose: 
+ * 	Generic interface that will be used to 
+ * 	store data from any EMC
+ *******************************************/
 class iEMController: public iUpdateStradegy
 {
 public:

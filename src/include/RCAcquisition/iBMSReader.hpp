@@ -4,6 +4,12 @@
 
 #include <vector>
 
+/*******************************************
+ * Class: iBMSReader
+ * Purpose: 
+ * 	Generic interface that will be used to 
+ * 	store data from any BMS
+ *******************************************/
 class iBMSReader: public iUpdateStradegy
 {
 public:
