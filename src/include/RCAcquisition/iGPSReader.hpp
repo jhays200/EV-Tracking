@@ -2,6 +2,12 @@
 #include "iUpdateStradegy.hpp"
 #include "RCObjects/GPSdata.hpp"
 
+/*******************************************
+ * Class: iGPSReader
+ * Purpose: 
+ * 	Generic interface that will be used to 
+ * 	store data from any GPS
+ *******************************************/
 class iGPSReader: public iUpdateStradegy
 {
 public:

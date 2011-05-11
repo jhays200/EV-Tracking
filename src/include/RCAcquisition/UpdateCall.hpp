@@ -1,6 +1,6 @@
 #pragma once
 #include "iUpdateStradegy.hpp"
-
+//DEPRECATED
 struct UpdateCall
 {
 	UpdateCall();
