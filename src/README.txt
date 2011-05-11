@@ -24,3 +24,7 @@ Nonimplemented files in this release
 	- Battery.cpp
     - BMS.cpp
 	- Time.cpp
+	
+Folders to Ignore
+	- RCCommunication isn't used to compile our system and
+		is an old folder.

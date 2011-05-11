@@ -18,12 +18,13 @@ RCAcquisition::RCAcquisition(const char * logPath, bool debugMode)
 	//if we don't have a log path we need to write to system log
 	if(logPath == 0)
 	{
-		//NOTE implement system log stuff here
+		//NOTE: implement system log stuff here
 		umask(0);
 	}
 	else
 	{
-		//Append to log file new data
+		//Append to debug log file new data for
+		//error reporting.
 		m_logFile = fopen(logPath, "w+");
 		
 		if(!m_logFile)
@@ -34,6 +35,7 @@ RCAcquisition::RCAcquisition(const char * logPath, bool debugMode)
 	}
 }
 
+//take care of some house keeping.
 RCAcquisition::~RCAcquisition()
 {
 	fclose(m_logFile);
@@ -78,12 +80,14 @@ void RCAcquisition::Start()
 	fprintf(m_logFile, "Made it outside the loop\n");
 	
 	delete m_updates[0];
+	m_updates[0] = 0;
 	//delete m_updates[1];
 	
 	exit(EXIT_SUCCESS);
 }
 
-//NOTE: this is where a process can stop the program
+//NOTE: this is where the user can signal the program
+		//to quite.
 void RCAcquisition::Stop(int sig)
 {
 	switch(sig)
@@ -95,6 +99,10 @@ void RCAcquisition::Stop(int sig)
 	}
 }
 
+//NOTE: This isn't used for debugging because it changes
+	//the process id for our system.  This makes it harder
+	//to automate testing for later on but will be implemented
+	//used for the final release.
 void RCAcquisition::SetupDaemon()
 {
 	pid_t pid, sid;
@@ -128,6 +136,8 @@ void RCAcquisition::SetupDaemon()
 	}
 }
 
+//This setup the signals being sent to 
+	//&RCAcquisition::Stop(int sig)
 void RCAcquisition::SetupSignalHadling()
 {
 	signal(SIGQUIT, &RCAcquisition::Stop);
