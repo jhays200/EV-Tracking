@@ -3,6 +3,15 @@
 #include <boost/thread.hpp>
 #include <boost/bind.hpp>
 
+/***********************************************
+ * Function: LithiumateReader::Ctor
+ * 
+ * Parameters:
+ * 	BMS * data - a pointer to a BMS data object
+ * 		 	which gets populated by Update
+ * 
+ * 	const char * filepath - a filepath to the hardware device
+ ***********************************************/
 LithiumateReader::LithiumateReader (BMS * data, const char * filePath) : 
   iBMSReader(data), serialReader ( filePath )
 {
@@ -24,11 +33,23 @@ LithiumateReader::~LithiumateReader()
 	m_updateLoop.join();
 }
 
+/************************************************
+ * Function: Update()
+ * 
+ * Purpose: Handle updating local BMS data from the 
+ * 	most recent valid data sample from the BMS.
+ ************************************************/
+//TODO: Break up parse into modular functions that perform one task
 void LithiumateReader::Update()
 {
   this->Parse();
 }
 
+/******************************************
+ * Function: UpdateLoop()
+ * 
+ * Purpose: Infinite loop to keep all data up do date
+ ******************************************/
 void LithiumateReader::UpdateLoop()
 {
   while(1)
@@ -46,12 +67,18 @@ void LithiumateReader::UpdateLoop()
 
     m_buffers[current_write].m_lock.unlock();
 	
-	boost::this_thread::restore_interruption ri(di);
+    boost::this_thread::restore_interruption ri(di);
     
     boost::this_thread::sleep(boost::posix_time::seconds(1));
   }
 }
 
+/******************************************
+ * Function: Parse()
+ * 
+ * Purpose: Parses data out of the most recent finished frame,
+ * 	pushing it into the appropriate conatiners for later use
+ ******************************************/
 void LithiumateReader::Parse()
 {
   int currentRead = current_write;
