@@ -8,6 +8,13 @@ struct ProBuffer
   char 	m_buff[256];
 };
 
+/****************************************
+ * Class: iUpdateStrategy
+ * 
+ * Purpose:
+ * 	Provides a generic Update interface
+ * 	for each acquisition module
+ ****************************************/
 class iUpdateStradegy
 {
 public:
