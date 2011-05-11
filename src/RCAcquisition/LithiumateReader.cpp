@@ -58,7 +58,7 @@ void LithiumateReader::Parse()
   m_buffers[currentRead].m_lock.unlock();
 
   std::vector<Battery> & m_batteries = *GetBatteries();
-	
+  
   for(int i(0); i < 100; ++i)
   {
     m_batteries[i].Setcurrent(2+(double)(.001*(int)local_cell_volt_buffer[i]));

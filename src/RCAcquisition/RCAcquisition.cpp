@@ -4,6 +4,7 @@
 #include <signal.h>
 #include <unistd.h>
 #include "RCAcquisition/Garmin18Reader.hpp"
+// #include "RCAcquisition/LithiumateReader.hpp"
 
 using namespace std;
 using namespace boost;
@@ -57,6 +58,7 @@ void RCAcquisition::Query(string str)
 void RCAcquisition::Start()
 {
 	GPSdata data;
+//	LithiumateReader data2;
 	daemon = true;
 	
 	//setup daemon and signal handling
@@ -64,19 +66,22 @@ void RCAcquisition::Start()
 	SetupSignalHadling();
 /*	printf("Made it past signal setup\n");*/
 	m_updates[0]._call = new Garmin18Reader(&data, "/dev/ttyUSB0");
+//	m_updates[1]._call = new LithiumateReader(&data2, "/dev/ttyUSB1");
 /*	printf("Made it the Garmin Setup\n");*/
 	boost::this_thread::sleep(boost::posix_time::millisec(750));
 	
 	while(daemon)
 	{
 		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[0]._call));
+/*		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_udpates[1]._call));*/
 		m_activeThreads.join_all();
 		
 		printf("\nLatitude: %f\n", data.GetLatitude());
 		printf("Speed: %f\n", data.GetSpeed());
 		printf("Longitude: %f\n", data.GetLongitude());
 		dbase.GPSInsert(data.GetLatitude(),data.GetLongitude(),data.GetSpeed());
-		
+		/*dbase.BMSInsert(data2.GetBMS().GetavgBattCurrent(),data2.GetBMS().GetavgBatteryResist(),
+				data2.GetBMS().GetavgBatteryVolt());*/
 		boost::this_thread::sleep(boost::posix_time::seconds(2));
 	}
 	
