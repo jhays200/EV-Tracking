@@ -12,6 +12,8 @@ set(CPPFILES
 	iEMController.cpp
 	SolitonReader.cpp
 	RCAcquisition.cpp
+	testModule.cpp
+	iNamedPipeReader.cpp
 	main.cpp)
 
 add_executable(RCAcquisition ${CPPFILES})

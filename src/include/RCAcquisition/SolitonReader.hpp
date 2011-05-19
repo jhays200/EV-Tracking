@@ -45,10 +45,16 @@ const int	HIGH_MOTOR_TEMP=	0b0010000000000000;
 const int	HIGH_MOTOR_POWER=	0b0100000000000000;
 const int	HIGH_MOTOR_VOLTAGE=	0b1000000000000000;
 
+struct SolitonBuffer
+{
+	boost::mutex lock;
+	char buffer[256];
+};
+
 /**********************************************
  * Class: SolitonReader
- * 
- * Purpose: 
+ *
+ * Purpose:
  * 	Handles communication and parsing for the
  * 	Soliton motor controller
  **********************************************/
@@ -57,23 +63,20 @@ class SolitonReader: public iEMController
 public:
     SolitonReader(Motor * data, const char * ip_address = "127.0.0.1", int port = SOLITON_PORT);
 	~SolitonReader();
-    void Update();    
+    void Update();
 private:
   //TODO: Use the message protocol to make CheckError useful
   //void CheckError();
   void Parse();
-  
+
   void UpdateLoop();
-  
+
   //boos::asio stuff...
   boost::asio::io_service service;
   udp::endpoint receiver_endpoint;
   udp::socket socket;
-  boost::thread m_update;
-  
-  //buffers
-  char	buffer[256];
-  double rpm;
-  double current;
-  double temp;
+  boost::thread * m_update;
+
+  unsigned short int current_write;
+  SolitonBuffer buffer[5];
 };

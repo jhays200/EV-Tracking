@@ -3,8 +3,10 @@
 #include <sys/stat.h>
 #include <signal.h>
 #include <unistd.h>
+#include "testModule.hpp"
 #include "RCAcquisition/Garmin18Reader.hpp"
 #include "RCAcquisition/LithiumateReader.hpp"
+#include <SolitonReader.hpp>
 
 using namespace std;
 using namespace boost;
@@ -26,7 +28,7 @@ RCAcquisition::RCAcquisition(const char * logPath, bool debugMode)
 		//Append to debug log file new data for
 		//error reporting.
 		m_logFile = fopen(logPath, "w+");
-		
+
 		if(!m_logFile)
 		{
 			printf("Error Unable to open log file");
@@ -47,47 +49,68 @@ RCAcquisition::~RCAcquisition()
 //NOTE: Where the show starts
 void RCAcquisition::Start()
 {
-	GPSdata dataGPS;
-	BMS dataBM;
+	//GPSdata dataGPS;
+	//BMS dataBM;
+	//Motor dataEM;
+	TestObject dataTest0;
+	TestObject dataTest1;
+	TestObject dataTest2;
 	
 	daemon = true;
-	
+
 	//setup daemon and signal handling
 	//SetupDaemon();
 	SetupSignalHadling();
-	printf("Made it past signal setup\n");
-	
+	//printf("Made it past signal setup\n");
+
 	//construct update classes
-	m_updates[0] = new Garmin18Reader(&dataGPS, "/dev/ttyUSB0");
+	//m_updates[0] = new Garmin18Reader(&dataGPS, "/dev/ttyUSB0");
 	//m_updates[1] = new LithiumateReader(&dataBM, "/dev/ttyUSB1");
-	printf("Made it the Garmin Setup\n");
-	boost::this_thread::sleep(boost::posix_time::millisec(750));
+	//m_updates[2] = new SolitonReader(&dataEM);
 	
+	m_updates[0] = new TestModule(&dataTest0, "/tmp/bms_pipe");
+	m_updates[1] = new TestModule(&dataTest1, "/tmp/gps_pipe");
+	m_updates[2] = new TestModule(&dataTest2, "/tmp/emc_pipe");
+	//printf("Made it the Garmin Setup\n");
+	boost::this_thread::sleep(boost::posix_time::millisec(750));
+
 	while(daemon)
 	{
+		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[2]));
+		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[1]));
 		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[0]));
-		//m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[1]));
 		m_activeThreads.join_all();
-		
-		printf("\nLatitude: %f\n", dataGPS.GetLatitude());
-		printf("Speed: %f\n", dataGPS.GetSpeed());
-		printf("Longitude: %f\n", dataGPS.GetLongitude());
-		dbase.GPSInsert(dataGPS.GetLatitude(),dataGPS.GetLongitude(),dataGPS.GetSpeed());
-		
-		boost::this_thread::sleep(boost::posix_time::millisec(500));
+
+		cout << "Thread 0, x value: " << dataTest0.GetX() << endl;
+		cout << "Thread 1, x value: " << dataTest1.GetX() << endl;
+		cout << "Thread 2, x value: " << dataTest2.GetX() << endl;
+		//printf("\nRPM: %i\n", dataEM.GetRpm());
+		//printf("Temp: %i\n", dataEM.GetTemp());
+		//printf("Current: %i\n", dataEM.GetCurrentAccross());
+		//printf("\nLatitude: %f\n", dataGPS.GetLatitude());
+		//printf("Speed: %f\n", dataGPS.GetSpeed());
+		//printf("Longitude: %f\n", dataGPS.GetLongitude());
+		//dbase.GPSInsert(dataGPS.GetLatitude(),dataGPS.GetLongitude(),dataGPS.GetSpeed());
+
+		boost::this_thread::sleep(boost::posix_time::seconds(1));
 	}
-	
+
 	fprintf(m_logFile, "Made it outside the loop\n");
-	
+
+
 	delete m_updates[0];
 	m_updates[0] = 0;
+	delete m_updates[1];
+	m_updates[1] = 0;
+	delete m_updates[2];
+	m_updates[2] = 0;
 	//delete m_updates[1];
-	
+
 	exit(EXIT_SUCCESS);
 }
 
 //NOTE: this is where the user can signal the program
-		//to quite.
+//to quite.
 void RCAcquisition::Stop(int sig)
 {
 	switch(sig)
@@ -106,28 +129,28 @@ void RCAcquisition::Stop(int sig)
 void RCAcquisition::SetupDaemon()
 {
 	pid_t pid, sid;
-	
+
 	pid = fork();
-	
-	
+
+
 	//exit with failure if unable to create thread
 	if(pid < 0)
 		exit(EXIT_FAILURE);
-	
+
 	//exit with success if we now have two processes
 	if(pid > 0)
 		exit(EXIT_SUCCESS);
-	
-	
-	
+
+
+
 	sid = setsid();
-	
+
 	if(!m_logFile)
 	{
 		printf("Need to implement fully functional daemon");
 		exit(EXIT_FAILURE);
 	}
-	
+
 	if(m_logFile)
 	{
 		close(STDIN_FILENO);
@@ -136,7 +159,7 @@ void RCAcquisition::SetupDaemon()
 	}
 }
 
-//This setup the signals being sent to 
+//This setup the signals being sent to
 	//&RCAcquisition::Stop(int sig)
 void RCAcquisition::SetupSignalHadling()
 {

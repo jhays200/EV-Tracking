@@ -9,6 +9,7 @@
 #define EA_629F03A6_51E1_48a3_B460_9C88B3760963__INCLUDED_
 
 #include "Battery.hpp"
+#include <vector>
 
 class BMS
 {

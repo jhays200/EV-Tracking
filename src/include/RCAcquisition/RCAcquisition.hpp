@@ -38,18 +38,18 @@ public:
   ~RCAcquisition();
   void Start();
   static void Stop(int sig);
-  
+
 private:
 	//private methods
-	
+
 	void SetupDaemon();
 	static void SetupSignalHadling();
-	
-	
+
+
 	//private data stuff
   static bool daemon;
-  
-  DBaseInterface dbase;
+
+  //DBaseInterface dbase;
   std::vector<iUpdateStradegy *> m_updates;
   boost::thread_group m_activeThreads;
   FILE * m_logFile;
