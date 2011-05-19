@@ -1,5 +1,4 @@
 #include "RCAcquisition.hpp"
-
 // void UpdateGarminLoop(Garmin18Reader * test1)
 // {
 //   while(1)
@@ -9,11 +8,11 @@
 // 	<< "Speed: " << test1->GetGPSData().GetSpeed() << std::endl
 // 	<< "Longitude: " << test1->GetGPSData().GetLongitude()
 // 	<< std::endl;
-// 	
+//
 //     boost::this_thread::sleep(boost::posix_time::seconds(3));
 //   }
 // }
-// 
+//
 // void UpdateLithiumateLoop(LithiumateReader * test2)
 // {
 //   int i = 0;
@@ -26,7 +25,7 @@ int main()
 	RCAcquisition test("./data.log");
 	test.Start();
 	return 0;
-}	
+}
 //   BMS * bms = new BMS();
 //   //LithiumateReader * test2 = new LithiumateReader(bms,"/dev/ttyUSB1");
 //   GPSdata * gps = new GPSdata();
@@ -71,15 +70,15 @@ int main()
       //printf("Garmin18Reader instantiated\n");
 // 	testCalls[0]._call = test2;
 // 	testCalls[1]._call = test2;
-      
+
 // 	for(;;)
 // 	{
 	      //boost::thread t1(testCalls[0]);
 	      //boost::thread t2(testCalls[1]);
-	      
+
 	      //t1.join();
 	      //t2.join();
-	      
+
 // 		printf("Test2->Update\n");
 // 		try
 // 		{
