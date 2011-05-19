@@ -14,6 +14,7 @@ set(CPPFILES
 	RCAcquisition.cpp
 	testModule.cpp
 	iNamedPipeReader.cpp
+	testBMS.cpp
 	main.cpp)
 
 add_executable(RCAcquisition ${CPPFILES})

@@ -1,7 +1,7 @@
 #pragma once
 #include <boost/concept_check.hpp>
 #include <boost/thread/mutex.hpp>
-
+#define BUFF_SIZE 1024
 struct ProBuffer
 {
   boost::mutex lock;

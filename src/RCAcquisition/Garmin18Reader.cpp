@@ -110,7 +110,7 @@ void Garmin18Reader::ParseSentence()
   //boost::this_thread::restore_interruption ri(di);
   //std::cout << "GTFO of the lock" << std::endl;
 
-  char valid, lat_dir, long_dir;
+  char valid;
   char north, east;
   double lat, longit, speed;
   double unchangedlatitude, unchangedlongitude;
