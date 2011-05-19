@@ -7,6 +7,7 @@
 #include "RCAcquisition/Garmin18Reader.hpp"
 /*#include "RCAcquisition/LithiumateReader.hpp"*/
 #include "testBMS.hpp"
+#include "testEMC.hpp"
 // #include <SolitonReader.hpp>
 
 using namespace std;
@@ -51,8 +52,8 @@ RCAcquisition::~RCAcquisition()
 void RCAcquisition::Start()
 {
 	//GPSdata dataGPS;
-	BMS dataBM;
-	//Motor dataEM;
+	BMS * dataBM = new BMS;
+	Motor * dataEM = new Motor;
 // 	TestObject dataTest0;
 // 	TestObject dataTest1;
 // 	TestObject dataTest2;
@@ -74,7 +75,8 @@ void RCAcquisition::Start()
 // 	m_updates[2] = new TestModule(&dataTest2, "/tmp/emc_pipe");
 	//printf("Made it the Garmin Setup\n");
 /*	cout << "Setting up TestBMS" << endl;*/
-	m_updates[0] = new TestBMS(&dataBM, "/tmp/bms_pipe");
+	m_updates[0] = new TestBMS(dataBM, "/tmp/bms_pipe");
+	m_updates[1] = new TestEMC(dataEM, "/tmp/emc_pipe");
 /*	cout << "TestBMS ready" << endl;*/
 	boost::this_thread::sleep(boost::posix_time::seconds(1));
 
@@ -85,16 +87,17 @@ void RCAcquisition::Start()
 // 		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[0]));
 /*		cout << "Spinning off thards...";*/
 		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[0]));
+		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[1]));
 /*		cout << "joining...";*/
 		m_activeThreads.join_all();
 /*		cout << "done." << endl;*/
 		
 		cout << "--BMS--\n" 
-			 << "Charge: " << dataBM.Getcharge() << endl;
-		vector<Battery> * batteries = dataBM.GetBatteries();
+			 << "Charge: " << dataBM->Getcharge() << endl;
+		vector<Battery> & batteries = dataBM->GetBatteries();
 		int count = 0;
-		for(vector<Battery>::iterator itr = batteries->begin(); 
-								itr != batteries->end(); ++itr,++count)
+		for(vector<Battery>::iterator itr = batteries.begin(); 
+								itr != batteries.end(); ++itr,++count)
 		{
 			cout << "Battery - " << count << '\n'
 				 << "Current: " << (*itr).Getcurrent() << '\n'
@@ -102,6 +105,11 @@ void RCAcquisition::Start()
 				 << "Temp: " << (*itr).Gettemp() << '\n'
 				 << "Voltage: " << (*itr).Getvolt() << endl;
 		}
+		cout << "--EMC--\n"
+			 << "RPM: " << dataEM->GetRpm() << '\n'
+			 << "Speed: " << dataEM->GetSpeed() << '\n'
+			 << "Temp: " << dataEM->GetTemp() << endl;
+			 
 // 		cout << "Thread 0, x value: " << dataTest0.GetX() << endl;
 // 		cout << "Thread 1, x value: " << dataTest1.GetX() << endl;
 // 		cout << "Thread 2, x value: " << dataTest2.GetX() << endl;
@@ -123,9 +131,9 @@ void RCAcquisition::Start()
 	m_updates[0] = 0;
 	delete m_updates[1];
 	m_updates[1] = 0;
-	delete m_updates[2];
-	m_updates[2] = 0;
-	//delete m_updates[1];
+	
+	delete dataBM;
+	delete dataEM;
 
 	exit(EXIT_SUCCESS);
 }

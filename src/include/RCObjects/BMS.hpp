@@ -21,7 +21,7 @@ public:
 // 	double GetavgBattCurrent();
 // 	double GetavgBatteryResist();
 // 	double GetavgBatteryVolt();
-	std::vector<Battery>* GetBatteries();
+	std::vector<Battery> & GetBatteries();
 	short Getcharge();
 	bool IsValid();
 	BMS & operator=(const BMS & copy);

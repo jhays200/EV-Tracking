@@ -79,7 +79,7 @@ void SolitonReader::Parse()
 	temp *= 10;//C*10
 
 	GetMotorData().SetRpm(rpm);
-	GetMotorData().SetCurrentAccross(current);
+// 	GetMotorData().SetCurrentAccross(current);
 	GetMotorData().SetTemp(temp);
 	delete [] locBuff;
 }

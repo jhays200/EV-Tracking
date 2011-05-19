@@ -12,7 +12,7 @@
 
 BMS::BMS()
 :/*avgBattCurrent(0.0), avgBatteryResist(0.0), avgBatteryVolt(0.0), 
-avgBattTemp(0.0),*/ charge(0), m_batteries(0), m_valid(true)
+avgBattTemp(0.0),*/ charge(0), m_batteries(), m_valid(true)
 {
 
 }
@@ -54,10 +54,10 @@ double BMS::GetavgBatteryVolt()
 }*/
 
 
-std::vector<Battery>* BMS::GetBatteries()
+std::vector<Battery>& BMS::GetBatteries()
 {
 
-	return &m_batteries;
+	return m_batteries;
 }
 
 

@@ -54,7 +54,7 @@ double BMS::GetavgBatteryVolt()
 }*/
 
 
-std::vector<Battery>* BMS::GetBatteries()
+std::vector<Battery>& BMS::GetBatteries()
 {
 
 	return &m_batteries;
