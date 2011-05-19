@@ -10,18 +10,24 @@
 
 
 
+
 BMS::BMS()
-:avgBattCurrent(0.0), avgBatteryResist(0.0), avgBatteryVolt(0.0), 
-avgBattTemp(0.0), charge(0), m_batteries(100), m_valid(true)
+: charge(0), m_batteries(100), m_valid(true)
 {
 
 }
 
 
+// BMS::BMS(const BMS & copy)
+// :avgBattCurrent(copy.avgBattCurrent), avgBatteryResist(copy.avgBatteryResist), 
+// avgBatteryVolt(copy.avgBatteryVolt), avgBattTemp(copy.avgBattTemp), 
+// charge(copy.charge), m_batteries(copy.m_batteries), m_valid(copy.m_valid)
+// {
+// 
+// }
+
 BMS::BMS(const BMS & copy)
-:avgBattCurrent(copy.avgBattCurrent), avgBatteryResist(copy.avgBatteryResist), 
-avgBatteryVolt(copy.avgBatteryVolt), avgBattTemp(copy.avgBattTemp), 
-charge(copy.charge), m_batteries(copy.m_batteries), m_valid(copy.m_valid)
+: charge(copy.charge), m_batteries(copy.m_batteries), m_valid(copy.m_valid)
 {
 
 }
@@ -33,31 +39,31 @@ BMS::~BMS()
 }
 
 
-double BMS::GetavgBattCurrent()
-{
-
-	return avgBattCurrent;
-}
-
-
-double BMS::GetavgBatteryResist()
-{
-
-	return avgBatteryResist;
-}
-
-
-double BMS::GetavgBatteryVolt()
-{
-
-	return avgBatteryVolt;
-}
+// double BMS::GetavgBattCurrent()
+// {
+// 
+// 	return avgBattCurrent;
+// }
+// 
+// 
+// double BMS::GetavgBatteryResist()
+// {
+// 
+// 	return avgBatteryResist;
+// }
+// 
+// 
+// double BMS::GetavgBatteryVolt()
+// {
+// 
+// 	return avgBatteryVolt;
+// }
 
 
 std::vector<Battery>* BMS::GetBatteries()
 {
 
-	return m_batteries;
+	return &m_batteries;
 }
 
 
@@ -78,10 +84,10 @@ bool BMS::IsValid()
 BMS & BMS::operator=(const BMS & copy)
 {
 	
-	avgBattCurrent = copy.avgBattCurrent;
-	avgBatteryResist = copy.avgBatteryResist;
-	avgBatteryVolt = copy.avgBatteryVolt;
-	avgBattTemp = copy.avgBattTemp;
+// 	avgBattCurrent = copy.avgBattCurrent;
+// 	avgBatteryResist = copy.avgBatteryResist;
+// 	avgBatteryVolt = copy.avgBatteryVolt;
+// 	avgBattTemp = copy.avgBattTemp;
 	charge = copy.charge;
 	m_batteries = copy.m_batteries;
 	m_valid = copy.m_valid;
@@ -90,25 +96,25 @@ BMS & BMS::operator=(const BMS & copy)
 }
 
 
-void BMS::SetavgBattCurrent(double newVal)
-{
-
-	avgBattCurrent = newVal;
-}
-
-
-void BMS::SetavgBatteryResist(double newVal)
-{
-
-	avgBatteryResist = newVal;
-}
-
-
-void BMS::SetavgBatteryVolt(double newVal)
-{
-
-	avgBatteryVolt = newVal;
-}
+// void BMS::SetavgBattCurrent(double newVal)
+// {
+// 
+// 	avgBattCurrent = newVal;
+// }
+// 
+// 
+// void BMS::SetavgBatteryResist(double newVal)
+// {
+// 
+// 	avgBatteryResist = newVal;
+// }
+// 
+// 
+// void BMS::SetavgBatteryVolt(double newVal)
+// {
+// 
+// 	avgBatteryVolt = newVal;
+// }
 
 
 void BMS::Setcharge(short newVal)

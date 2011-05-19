@@ -1,6 +1,6 @@
 include_directories(${HEADER_DIR}/RCObjects)
 
-set(CPPFILES testObject.cpp
+set(CPPFILES #testObject.cpp
     Battery.cpp
     BMS.cpp
     GPSdata.cpp

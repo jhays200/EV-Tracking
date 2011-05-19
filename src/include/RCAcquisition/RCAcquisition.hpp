@@ -3,7 +3,7 @@
 #include "RCObjects/Time.hpp"
 #include <boost/thread.hpp>
 #include <cstdio>
-#include "RCPersist/dbaseinterface.h"
+//#include "RCPersist/dbaseinterface.h"
 
 class iUpdateStradegy;
 

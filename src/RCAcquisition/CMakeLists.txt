@@ -11,10 +11,10 @@ set(CPPFILES
 	serial.cpp
 	iEMController.cpp
 	SolitonReader.cpp
-	RCAcquisition.cpp
-	testModule.cpp
-	iNamedPipeReader.cpp
+	#RCAcquisition.cpp
+	#testModule.cpp
+	#iNamedPipeReader.cpp
 	main.cpp)
 
 add_executable(RCAcquisition ${CPPFILES})
-target_link_libraries(RCAcquisition RCObjects RCPersist ${Boost_LIBRARIES})
+target_link_libraries(RCAcquisition RCObjects VeloCommLib ${Boost_LIBRARIES})

@@ -6,6 +6,7 @@
 ///////////////////////////////////////////////////////////
 
 #include "Motor.hpp"
+#include <string.h>
 
 Motor::Motor()
 	:m_currentAccross(0.0), m_dutyCycles(0.0),
@@ -25,7 +26,6 @@ Motor::~Motor()
 
 double Motor::GetCurrentAccross()
 {
-
 	return m_currentAccross;
 }
 

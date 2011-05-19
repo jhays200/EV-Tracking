@@ -15,8 +15,9 @@ include_directories(${HEADER_DIR})
 #directories that contain libraries to be built
 
 #static libraries
-add_subdirectory(RCObjects "./lib")
-add_subdirectory(RCPersist)
+add_subdirectory(RCObjects)
+#add_subdirectory(RCPersist)
+add_subdirectory(RCPython)
 
 #executables
 add_subdirectory(RCAcquisition "./bin")
