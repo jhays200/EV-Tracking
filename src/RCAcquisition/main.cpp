@@ -1,4 +1,8 @@
-#include "RCAcquisition.hpp"
+#include "../RCPython/VeloComm.hpp"
+#include "RCObjects/BMS.hpp"
+#include "RCObjects/GPSdata.hpp"
+#include "RCObjects/Motor.hpp"
+//#include "RCAcquisition.hpp"
 // void UpdateGarminLoop(Garmin18Reader * test1)
 // {
 //   while(1)
@@ -22,8 +26,41 @@
 
 int main()
 {
-	RCAcquisition test("./data.log");
-	test.Start();
+	//RCAcquisition test("./data.log");
+	//test.Start();
+	BMS testBMS;
+	GPSdata testGPS;
+	Motor testMotor;
+	VeloComm test;
+	std::vector<Battery> * testBatteries = testBMS.GetBatteries();
+	
+	testBatteries->push_back(Battery());
+	testBatteries->back().Setcurrent(3.3);
+	testBatteries->back().Setresist(2.3);
+	testBatteries->back().Settemp(1.3);
+	testBatteries->back().Setvolt(0.3);
+	
+	testBatteries->push_back(Battery());
+	testBatteries->back().Setcurrent(1.3);
+	testBatteries->back().Setresist(3.3);
+	testBatteries->back().Settemp(0.3);
+	testBatteries->back().Setvolt(0.3);
+	
+	testGPS.SetSpeed(10.3);
+	testGPS.SetLatitude(2324.2);
+	testGPS.SetLongitude(3221.4);
+	
+	testMotor.SetCurrentAccross(232.4);
+	testMotor.SetDutyCycles(340.2);
+	testMotor.SetRpm(3400.0);
+	testMotor.SetSpeed(34324.4);
+	testMotor.SetTemp(3434.23);
+	
+	test.SetBMSref(&testBMS);
+	test.SetGPSref(&testGPS);
+	test.SetMotorRef(&testMotor);
+	test.Report();
+	
 	return 0;
 }
 //   BMS * bms = new BMS();
