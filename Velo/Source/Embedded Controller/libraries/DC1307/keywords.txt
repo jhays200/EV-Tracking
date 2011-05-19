@@ -1,0 +1,30 @@
+#######################################
+# Syntax Coloring Map DS1307
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+RTC	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+get	KEYWORD2
+min_of_day	KEYWORD2
+set	KEYWORD2
+start	KEYWORD2
+stop	KEYWORD2
+get_sram_data	KEYWORD2
+set_sram_data	KEYWORD2
+get_sram_byte	KEYWORD2
+set_sram_byte	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################

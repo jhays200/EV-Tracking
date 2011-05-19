@@ -1,0 +1,154 @@
+﻿body
+{
+    font-family: Georgia, serif;
+    font-size: 11px;
+    margin: 0;
+    padding: 0;
+    background-color: #212629;
+    color: #FFF;
+}
+a
+{
+	color:#FFF;	
+	text-decoration:none;
+}
+a:active
+{
+	color:#0FF;
+}
+a:hover
+{
+	color:#DFF;
+	text-decoration:underline;
+}
+a:visited
+{
+	color:#EFF;
+}
+#menu
+{
+	color:#000;
+    background-color: #38a595;
+    background-image: url(images/menu.background.repeat.png);
+    height: 125px;
+}
+#backing
+{
+    background-image: url(images/menu.background.png);
+    width: 900px;
+    height: 125px;
+}
+#menu img
+{
+    float: left;
+    margin: 16px;
+}
+#menu ul
+{
+    float: left;
+    margin: 16px 16px 16px 0;
+    padding-left: 32px;
+    border-left-color: #000;
+    border-left-style: dashed;
+    border-left-width: 1px;
+    width: 150px;
+}
+#menu #snippet
+{
+    float: left;
+    margin: 16px 16px 16px 0;
+    padding-left: 16px;
+    border-left-color: #000;
+    border-left-style: dashed;
+    border-left-width: 1px;
+    width: 250px;
+}
+#snippet h1
+{
+    font-size: 12px;
+    font-weight: bolder;
+    margin: 0;
+}
+#menu li
+{
+    font-weight: bolder;
+    color: #FFF;
+    text-transform: uppercase;
+    list-style-type: none;
+    list-style-image: url(images/menu.wave.png);
+    border-top-color: #000;
+    border-top-style: dashed;
+    border-top-width: 1px;
+}
+.noicon
+{
+    list-style-image: none !important;
+}
+.leftdiv
+{
+    border-right: 1px dashed #000;
+	float: left;
+    	margin-right: 16px;
+    	padding: 0 16px;
+    	width: 196px;
+	height: 150px;
+}
+.leftdiv h1
+{
+    color: #BADBD6;
+    font-size: 20px;
+    font-style: italic;
+}
+.leftdiv h2
+{
+    font-size: 12px;
+    color: #FFF;
+    margin: 1px;
+}
+.leftdiv h3
+{
+    font-size: 11px;
+    color: #49b8a7;
+    margin: 1px;
+}
+.leftdiv p
+{
+    font-size: 11px;
+    color: #DEE;
+    margin-top: 1px;
+}
+.content
+{
+	margin-left:229px;
+	padding-left:16px;
+}
+textarea
+{
+    background-color:#35474B;
+    border:3px solid #374244;
+    color:#FFF;
+    font-family:Georgia,serif;
+    font-size:11px;
+    overflow:auto;
+}
+.mTextArea
+{
+    background-color:#35474B;
+    border:3px solid #374244;
+    color:#FFF;
+    font-family:Georgia,serif;
+    font-size:11px;
+    overflow:auto;
+}
+#foot
+{
+	margin-top: 16px;
+    background-color: #1d2124;
+    padding-bottom: 16px;
+    padding-top: 16px;
+}
+.clear
+{
+	height:1px;	
+	clear:both;
+}

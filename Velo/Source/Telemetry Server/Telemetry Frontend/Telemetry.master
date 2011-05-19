@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Telemetry.master.cs" Inherits="Telemetry" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>meTRICS.US</title>
+    <link href="Style.css" rel="stylesheet" type="text/css" />
+	<link type="text/css" href="css/ui-darkness/jquery-ui-1.8rc3.custom.css" rel="stylesheet" />	
+	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8rc3.custom.min.js"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="menu">
+        <div id="backing">
+            <img alt="metrics: broadcast" src="images/menu.header.png" />
+            <ul>
+                <li><a href="Home.aspx">Home</a></li>
+                <li><a href="Protocol.aspx">Protocol</a></li>
+                <li><a href="Devices.aspx">Devices</a></li>
+                <li><a href="About.aspx">About</a></li>
+                <li><a href="Manage.aspx">Manage Devices</a></li>
+                <li class="noicon">&nbsp;</li>
+            </ul>
+            <div id="snippet">
+                <h1>
+                    Broadcast Yourself</h1>
+                <p>
+                    Currently in <span style="color: #FFF">&alpha;lpha</span> stage building a real-time
+                    metric tracking, analysis, and processing service<span style="color: #FFF">.</span></p>
+            </div>
+        </div>
+    </div>
+    <br class="clear" />
+    <asp:ContentPlaceHolder ID="body" runat="server">
+    </asp:ContentPlaceHolder>    
+    <br class="clear" />
+    <div id="foot">
+        <div class="leftdiv">OIT 2009-10 Team Velomobile</div>
+        <br class="clear" />
+    </div>
+    </form>
+</body>
+</html>

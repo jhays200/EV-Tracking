@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Telemetry Frontend", "Telemetry Frontend\", "{25D7D536-FCA7-4F0A-84AA-F8249F7D3927}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
+		Debug.AspNetCompiler.VirtualPath = "/Telemetry Frontend"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\Telemetry\Telemetry Frontend\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Telemetry Frontend\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/Telemetry Frontend"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\Telemetry\Telemetry Frontend\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Telemetry Frontend\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "52495"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{25D7D536-FCA7-4F0A-84AA-F8249F7D3927}.Debug|.NET.ActiveCfg = Debug|.NET
+		{25D7D536-FCA7-4F0A-84AA-F8249F7D3927}.Debug|.NET.Build.0 = Debug|.NET
+		{25D7D536-FCA7-4F0A-84AA-F8249F7D3927}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{25D7D536-FCA7-4F0A-84AA-F8249F7D3927}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{25D7D536-FCA7-4F0A-84AA-F8249F7D3927}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{25D7D536-FCA7-4F0A-84AA-F8249F7D3927}.Release|.NET.ActiveCfg = Debug|.NET
+		{25D7D536-FCA7-4F0A-84AA-F8249F7D3927}.Release|.NET.Build.0 = Debug|.NET
+		{25D7D536-FCA7-4F0A-84AA-F8249F7D3927}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{25D7D536-FCA7-4F0A-84AA-F8249F7D3927}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{25D7D536-FCA7-4F0A-84AA-F8249F7D3927}.Release|Mixed Platforms.Build.0 = Debug|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

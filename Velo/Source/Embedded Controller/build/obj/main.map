@@ -1,0 +1,761 @@
+Archive member included because of file (symbol)
+
+.\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+                              .\obj\main.cpp.o (cKernel::~cKernel())
+.\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+                              .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o) (cMemory::~cMemory())
+.\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+                              .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o) (cProcesses::~cProcesses())
+.\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                              .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o) (cSemaphore::Request())
+.\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+                              .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o) (cClock::GetSC())
+.\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+                              .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o) (cList::cList())
+.\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+                              .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o) (DateTime::DateTime())
+c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+                              c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o (exit)
+c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+                              .\obj\main.cpp.o (__do_clear_bss)
+c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_ctors.o)
+                              .\obj\main.cpp.o (__do_global_ctors)
+c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_dtors.o)
+                              .\obj\main.cpp.o (__do_global_dtors)
+c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_tablejump.o)
+                              c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_ctors.o) (__tablejump__)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+Address of section .data set to 0x800200
+LOAD c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+LOAD .\obj\main.cpp.o
+LOAD .\obj\arduino_runtime_atmega1280_withlibs.a
+LOAD c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a
+LOAD c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51\libc.a
+LOAD c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000      0xa4a
+ *(.vectors)
+ .vectors       0x00000000       0xe4 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+                0x000000e4                . = ALIGN (0x2)
+                0x000000e4                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x000000e4        0x0 linker stubs
+ *(.trampolines*)
+                0x000000e4                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x000000e4                __ctors_start = .
+ *(.ctors)
+ .ctors         0x000000e4        0x2 .\obj\main.cpp.o
+                0x000000e6                __ctors_end = .
+                0x000000e6                __dtors_start = .
+ *(.dtors)
+ .dtors         0x000000e6        0x2 .\obj\main.cpp.o
+                0x000000e8                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x000000e8        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+                0x000000e8                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x000000e8        0xc c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x000000f4       0x1c c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+                0x000000f4                __do_copy_data
+ .init4         0x00000110       0x10 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+                0x00000110                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ .init6         0x00000120       0x16 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_ctors.o)
+                0x00000120                __do_global_ctors
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000136        0x8 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+ *(.init9)
+ *(.text)
+ .text          0x0000013e        0x4 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+                0x0000013e                __vector_38
+                0x0000013e                __vector_22
+                0x0000013e                __vector_28
+                0x0000013e                __vector_1
+                0x0000013e                __vector_32
+                0x0000013e                __vector_34
+                0x0000013e                __vector_24
+                0x0000013e                __vector_12
+                0x0000013e                __vector_55
+                0x0000013e                __vector_46
+                0x0000013e                __bad_interrupt
+                0x0000013e                __vector_6
+                0x0000013e                __vector_31
+                0x0000013e                __vector_35
+                0x0000013e                __vector_39
+                0x0000013e                __vector_3
+                0x0000013e                __vector_23
+                0x0000013e                __vector_30
+                0x0000013e                __vector_45
+                0x0000013e                __vector_25
+                0x0000013e                __vector_11
+                0x0000013e                __vector_54
+                0x0000013e                __vector_13
+                0x0000013e                __vector_17
+                0x0000013e                __vector_19
+                0x0000013e                __vector_56
+                0x0000013e                __vector_7
+                0x0000013e                __vector_49
+                0x0000013e                __vector_41
+                0x0000013e                __vector_43
+                0x0000013e                __vector_27
+                0x0000013e                __vector_5
+                0x0000013e                __vector_33
+                0x0000013e                __vector_47
+                0x0000013e                __vector_52
+                0x0000013e                __vector_37
+                0x0000013e                __vector_4
+                0x0000013e                __vector_44
+                0x0000013e                __vector_51
+                0x0000013e                __vector_9
+                0x0000013e                __vector_2
+                0x0000013e                __vector_21
+                0x0000013e                __vector_15
+                0x0000013e                __vector_36
+                0x0000013e                __vector_29
+                0x0000013e                __vector_40
+                0x0000013e                __vector_8
+                0x0000013e                __vector_26
+                0x0000013e                __vector_48
+                0x0000013e                __vector_14
+                0x0000013e                __vector_53
+                0x0000013e                __vector_10
+                0x0000013e                __vector_50
+                0x0000013e                __vector_16
+                0x0000013e                __vector_18
+                0x0000013e                __vector_20
+                0x0000013e                __vector_42
+ .text          0x00000142       0x4c .\obj\main.cpp.o
+                0x00000142                main
+ .text          0x0000018e       0x80 .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+                0x000001ce                cKernel::cKernel()
+                0x000001ae                cKernel::~cKernel()
+                0x000001ee                cKernel::cKernel()
+                0x0000018e                cKernel::~cKernel()
+ .text          0x0000020e      0x1da .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+                0x0000038c                cMemory::cMemory()
+                0x0000026a                cMemory::Free(void*)
+                0x0000037c                cMemory::~cMemory()
+                0x0000020e                cMemory::CreateBlock(void*, unsigned int)
+                0x00000384                cMemory::~cMemory()
+                0x000003ba                cMemory::cMemory()
+                0x000002a8                cMemory::Allocate(unsigned int)
+ .text          0x000003e8      0x2d4 .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+                0x000005f8                cProcesses::cProcesses()
+                0x0000065a                cProcesses::cProcesses()
+                0x00000476                cProcesses::Scheduler()
+                0x00000544                cProcesses::Spawn(void*, unsigned int)
+                0x00000420                cProcesses::Yield(unsigned int)
+                0x000005c4                cProcesses::~cProcesses()
+                0x000005de                cProcesses::~cProcesses()
+                0x000003e8                cProcesses::Kill()
+                0x000003f8                cProcesses::DisableInterrupts()
+                0x00000406                cProcesses::EnableInterrupts(bool)
+ .text          0x000006bc      0x1b4 .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                0x00000778                cSemaphore::~cSemaphore()
+                0x00000712                cSemaphore::Release()
+                0x00000842                cSemaphore::cSemaphore(unsigned int, unsigned int)
+                0x000007c6                cSemaphore::~cSemaphore()
+                0x000006bc                cSemaphore::Request()
+                0x00000814                cSemaphore::cSemaphore(unsigned int, unsigned int)
+ .text          0x00000870       0x36 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+                0x0000087a                cClock::GetRTC()
+                0x0000089a                cClock::cClock()
+                0x000008a0                cClock::cClock()
+                0x0000088e                cClock::~cClock()
+                0x00000876                cClock::SetRTC(DateTime)
+                0x00000894                cClock::~cClock()
+                0x00000870                cClock::GetSC()
+ .text          0x000008a6      0x164 .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+                0x000009b2                cList::Push(cContext*)
+                0x000008be                cList::~cList()
+                0x000008ca                cList::~cList()
+                0x000008d6                cList::Pop()
+                0x000008a6                cList::cList()
+                0x000008b2                cList::cList()
+                0x0000090a                cList::Pop(unsigned int)
+ .text          0x00000a0a       0x1a .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+                0x00000a1a                DateTime::~DateTime()
+                0x00000a0a                DateTime::DateTime()
+                0x00000a1c                DateTime::~DateTime()
+                0x00000a12                DateTime::DateTime()
+                0x00000a1e                DateTime::ToString()
+ .text          0x00000a24        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+ .text          0x00000a24        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+ .text          0x00000a24        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_ctors.o)
+ .text          0x00000a24        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_dtors.o)
+ .text          0x00000a24        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_tablejump.o)
+                0x00000a24                . = ALIGN (0x2)
+ *(.text.*)
+ .text.libgcc   0x00000a24        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+ .text.libgcc   0x00000a24        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+ .text.libgcc   0x00000a24        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_ctors.o)
+ .text.libgcc   0x00000a24        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_dtors.o)
+ .text.libgcc   0x00000a24        0xc c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_tablejump.o)
+                0x00000a28                __tablejump__
+                0x00000a24                __tablejump2__
+                0x00000a30                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x00000a30        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+                0x00000a30                exit
+                0x00000a30                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ .fini6         0x00000a30       0x16 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_dtors.o)
+                0x00000a30                __do_global_dtors
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x00000a46        0x4 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+ *(.fini0)
+                0x00000a4a                _etext = .
+
+.data           0x00800200        0x0 load address 0x00000a4a
+                0x00800200                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800200        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+ .data          0x00800200        0x0 .\obj\main.cpp.o
+ .data          0x00800200        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+ .data          0x00800200        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+ .data          0x00800200        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+ .data          0x00800200        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+ .data          0x00800200        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+ .data          0x00800200        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+ .data          0x00800200        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+ .data          0x00800200        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+ .data          0x00800200        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+ .data          0x00800200        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_ctors.o)
+ .data          0x00800200        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_dtors.o)
+ .data          0x00800200        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_tablejump.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800200                . = ALIGN (0x2)
+                0x00800200                _edata = .
+                0x00800200                PROVIDE (__data_end, .)
+
+.bss            0x00800200       0x35
+                0x00800200                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800200        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+ .bss           0x00800200       0x35 .\obj\main.cpp.o
+                0x00800200                Kernel
+                0x00800227                Sensors
+ .bss           0x00800235        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+ .bss           0x00800235        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+ .bss           0x00800235        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+ .bss           0x00800235        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+ .bss           0x00800235        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+ .bss           0x00800235        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+ .bss           0x00800235        0x0 .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+ .bss           0x00800235        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+ .bss           0x00800235        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+ .bss           0x00800235        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_ctors.o)
+ .bss           0x00800235        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_dtors.o)
+ .bss           0x00800235        0x0 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_tablejump.o)
+ *(.bss*)
+ *(COMMON)
+                0x00800235                PROVIDE (__bss_end, .)
+                0x00000a4a                __data_load_start = LOADADDR (.data)
+                0x00000a4a                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800235        0x0
+                0x00800235                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800235                PROVIDE (__noinit_end, .)
+                0x00800235                _end = .
+                0x00800235                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000      0x100
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 .\obj\main.cpp.o
+ .debug_aranges
+                0x00000020       0x20 .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+ .debug_aranges
+                0x00000040       0x20 .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+ .debug_aranges
+                0x00000060       0x20 .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+ .debug_aranges
+                0x00000080       0x20 .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+ .debug_aranges
+                0x000000a0       0x20 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+ .debug_aranges
+                0x000000c0       0x20 .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+ .debug_aranges
+                0x000000e0       0x20 .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+
+.debug_pubnames
+                0x00000000      0x4b6
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0x32 .\obj\main.cpp.o
+ .debug_pubnames
+                0x00000032       0x68 .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+ .debug_pubnames
+                0x0000009a       0xa9 .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+ .debug_pubnames
+                0x00000143      0x11e .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+ .debug_pubnames
+                0x00000261       0xb0 .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+ .debug_pubnames
+                0x00000311       0x98 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+ .debug_pubnames
+                0x000003a9       0x86 .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+ .debug_pubnames
+                0x0000042f       0x87 .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+
+.debug_info     0x00000000     0x316d
+ *(.debug_info)
+ .debug_info    0x00000000      0x815 .\obj\main.cpp.o
+ .debug_info    0x00000815      0x817 .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+ .debug_info    0x0000102c      0x54f .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+ .debug_info    0x0000157b      0x9b1 .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+ .debug_info    0x00001f2c      0x8ac .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+ .debug_info    0x000027d8      0x399 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+ .debug_info    0x00002b71      0x365 .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+ .debug_info    0x00002ed6      0x297 .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0xd24
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x1cd .\obj\main.cpp.o
+ .debug_abbrev  0x000001cd      0x198 .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+ .debug_abbrev  0x00000365      0x1cd .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+ .debug_abbrev  0x00000532      0x237 .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+ .debug_abbrev  0x00000769      0x1c9 .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+ .debug_abbrev  0x00000932      0x147 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+ .debug_abbrev  0x00000a79      0x18a .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+ .debug_abbrev  0x00000c03      0x121 .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+
+.debug_line     0x00000000      0xfb2
+ *(.debug_line)
+ .debug_line    0x00000000      0x131 .\obj\main.cpp.o
+ .debug_line    0x00000131      0x174 .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+ .debug_line    0x000002a5      0x26c .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+ .debug_line    0x00000511      0x34f .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+ .debug_line    0x00000860      0x275 .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+ .debug_line    0x00000ad5      0x154 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+ .debug_line    0x00000c29      0x26a .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+ .debug_line    0x00000e93      0x11f .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+
+.debug_frame    0x00000000      0x3a0
+ *(.debug_frame)
+ .debug_frame   0x00000000       0x50 .\obj\main.cpp.o
+ .debug_frame   0x00000050       0x50 .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+ .debug_frame   0x000000a0       0x80 .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+ .debug_frame   0x00000120       0xb0 .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+ .debug_frame   0x000001d0       0x70 .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+ .debug_frame   0x00000240       0x80 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+ .debug_frame   0x000002c0       0x80 .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+ .debug_frame   0x00000340       0x60 .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+
+.debug_str      0x00000000      0x729
+ *(.debug_str)
+ .debug_str     0x00000000      0x511 .\obj\main.cpp.o
+                                0x5b1 (size before relaxing)
+ .debug_str     0x00000511       0x4a .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+                                0x558 (size before relaxing)
+ .debug_str     0x0000055b       0x4d .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+                                0x2d8 (size before relaxing)
+ .debug_str     0x000005a8       0x6e .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+                                0x592 (size before relaxing)
+ .debug_str     0x00000616       0x51 .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                                0x575 (size before relaxing)
+ .debug_str     0x00000667       0x40 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+                                0x1bd (size before relaxing)
+ .debug_str     0x000006a7       0x46 .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+                                0x17e (size before relaxing)
+ .debug_str     0x000006ed       0x3c .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+                                0x140 (size before relaxing)
+
+.debug_loc      0x00000000      0x9d8
+ *(.debug_loc)
+ .debug_loc     0x00000000       0x70 .\obj\main.cpp.o
+ .debug_loc     0x00000070       0xa0 .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+ .debug_loc     0x00000110      0x228 .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+ .debug_loc     0x00000338      0x298 .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+ .debug_loc     0x000005d0      0x1b0 .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+ .debug_loc     0x00000780       0xb8 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+ .debug_loc     0x00000838      0x138 .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+ .debug_loc     0x00000970       0x68 .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(.\obj\main.elf elf32-avr)
+LOAD linker stubs
+
+Cross Reference Table
+
+Symbol                                            File
+DateTime::DateTime()                              .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+DateTime::DateTime()                              .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+DateTime::ToString()                              .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+DateTime::~DateTime()                             .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+DateTime::~DateTime()                             .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+Kernel                                            .\obj\main.cpp.o
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+Sensors                                           .\obj\main.cpp.o
+__bad_interrupt                                   c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__bss_end                                         c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+__bss_start                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+__ctors_end                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_ctors.o)
+__ctors_start                                     c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_ctors.o)
+__data_end                                        c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__data_load_start                                 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__data_start                                      c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__do_clear_bss                                    c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_clear_bss.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+                                                  .\obj\main.cpp.o
+__do_copy_data                                    c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(DateTime.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+                                                  .\obj\main.cpp.o
+__do_global_ctors                                 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_ctors.o)
+                                                  .\obj\main.cpp.o
+__do_global_dtors                                 c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_dtors.o)
+                                                  .\obj\main.cpp.o
+__dtors_end                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_dtors.o)
+__dtors_start                                     c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_dtors.o)
+__heap_end                                        c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__init                                            c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__stack                                           c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__tablejump2__                                    c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_tablejump.o)
+__tablejump__                                     c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_tablejump.o)
+                                                  c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_dtors.o)
+                                                  c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_ctors.o)
+__vector_1                                        c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_10                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_11                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_12                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_13                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_14                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_15                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_16                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_17                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_18                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_19                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_2                                        c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_20                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_21                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_22                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_23                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_24                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_25                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_26                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_27                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_28                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_29                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_3                                        c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_30                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_31                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_32                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_33                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_34                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_35                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_36                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_37                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_38                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_39                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_4                                        c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_40                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_41                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_42                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_43                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_44                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_45                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_46                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_47                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_48                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_49                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_5                                        c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_50                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_51                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_52                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_53                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_54                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_55                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_56                                       c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_6                                        c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_7                                        c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_8                                        c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_9                                        c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vector_default                                  c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+__vectors                                         c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+_exit                                             c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+cClock::GetRTC()                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+cClock::GetSC()                                   .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cClock::SetRTC(DateTime)                          .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+cClock::cClock()                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+cClock::cClock()                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+cClock::~cClock()                                 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+cClock::~cClock()                                 .\obj\arduino_runtime_atmega1280_withlibs.a(cClock.cpp.o)
+cKernel::cKernel()                                .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+                                                  .\obj\main.cpp.o
+cKernel::cKernel()                                .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+cKernel::~cKernel()                               .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+                                                  .\obj\main.cpp.o
+cKernel::~cKernel()                               .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+cList::Pop()                                      .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+cList::Pop(unsigned int)                          .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cList::Push(cContext*)                            .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cList::cList()                                    .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cList::cList()                                    .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+cList::~cList()                                   .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cList::~cList()                                   .\obj\arduino_runtime_atmega1280_withlibs.a(cList.cpp.o)
+cMemory::Allocate(unsigned int)                   .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cMemory::CreateBlock(void*, unsigned int)         .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+cMemory::Free(void*)                              .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cMemory::cMemory()                                .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+cMemory::cMemory()                                .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+cMemory::~cMemory()                               .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+cMemory::~cMemory()                               .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+cProcesses::DisableInterrupts()                   .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+cProcesses::EnableInterrupts(bool)                .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+cProcesses::Kill()                                .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cProcesses::Scheduler()                           .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cProcesses::Spawn(void*, unsigned int)            .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cProcesses::Yield(unsigned int)                   .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cProcesses::cProcesses()                          .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cProcesses::cProcesses()                          .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+cProcesses::~cProcesses()                         .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+cProcesses::~cProcesses()                         .\obj\arduino_runtime_atmega1280_withlibs.a(cProcesses.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cKernel.cpp.o)
+cSemaphore::Release()                             .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+cSemaphore::Request()                             .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+cSemaphore::cSemaphore(unsigned int, unsigned int) .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+cSemaphore::cSemaphore(unsigned int, unsigned int) .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+cSemaphore::~cSemaphore()                         .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+cSemaphore::~cSemaphore()                         .\obj\arduino_runtime_atmega1280_withlibs.a(cSemaphore.cpp.o)
+                                                  .\obj\arduino_runtime_atmega1280_withlibs.a(cMemory.cpp.o)
+exit                                              c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/avr51\libgcc.a(_exit.o)
+                                                  c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o
+main                                              .\obj\main.cpp.o
+                                                  c:/arduino-0018/hardware/tools/avr/bin/../lib/gcc/avr/4.3.2/../../../../avr/lib/avr51/crtm1280.o

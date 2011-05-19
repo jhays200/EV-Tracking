@@ -1,0 +1,15 @@
+Extract Arduino-0017.zip to C:\
+
+You will need to set the following few environment variables. (To create environment variables, go into Start / Control Panel / System. Click on the Advanced tab. Press the button that says Environment Variables. In the User Variables pane, click the New button. You must close and re-open any command prompt windows before the new variable takes effect; otherwise the batch files here will not work.)
+
+Variable Name		Variable Value
+ARDUINO_PATH		C:\arduino-0018
+ARDUINO_MCU		atmega1280
+ARDUINO_PROGRAMMER	stk500
+ARDUINO_FCPU		16000000
+ARDUINO_COMPORT		COM2
+ARDUINO_BURNRATE	57600
+
+Close "System Properties" before continuing
+
+C:\arduino-0018\build>cls & abuild.bat -c -r -n -v main.cpp
