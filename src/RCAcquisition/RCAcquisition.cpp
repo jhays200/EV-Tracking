@@ -11,7 +11,7 @@
 // #include <SolitonReader.hpp>
 #include <iostream>
 #include "../RCPython/VeloComm.hpp"
-#include "RCPersist/dbaseinterface.h"
+#include "RCPersist/RCDatabase.hpp"
 
 
 using namespace std;
@@ -55,7 +55,7 @@ RCAcquisition::~RCAcquisition()
 //NOTE: Where the show starts
 void RCAcquisition::Start()
 {
-	DBaseInterface * dbase = new DBaseInterface;
+	RCDatabase * dbase = new RCDatabase("localhost","root","maverick","jp");
 	iReport * velo = new VeloComm;
 	//GPSdata dataGPS;
 	BMS * dataBM = new BMS;
@@ -70,7 +70,6 @@ void RCAcquisition::Start()
 	m_updates[0] = new TestBMS(dataBM, "/tmp/bms_pipe");
 	m_updates[1] = new TestEMC(dataEM, "/tmp/emc_pipe");
 
-/*	cout << "TestBMS ready" << endl;*/
 	boost::this_thread::sleep(boost::posix_time::seconds(1));
 
 	while(daemon)

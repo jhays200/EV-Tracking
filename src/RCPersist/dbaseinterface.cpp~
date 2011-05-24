@@ -7,15 +7,9 @@ using std::cout;
 using std::string;
 #include <mysql/my_global.h>
 
-
-/*
-	
-*/
 DBaseInterface::DBaseInterface()
 {
 	char query[256];
-
-
 
 	user = "root";
 
@@ -27,6 +21,7 @@ DBaseInterface::DBaseInterface()
 
 	RCDatabaseTest t(server.c_str(),user.c_str(),database.c_str(),
 		password.c_str());
+	t.Disconnect();
 }
 
 void DBaseInterface::BMSInsert(double charge)
@@ -53,7 +48,6 @@ void DBaseInterface::BMSInsert(double charge)
 	query += ", ";
 	query += "(select MAX(trip_id) from trip))";
 	t.Query(query.c_str());
-	cout << query;
 }
 
 void DBaseInterface::GPSInsert(

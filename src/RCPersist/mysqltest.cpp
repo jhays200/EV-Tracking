@@ -19,7 +19,7 @@ RCDatabaseTest::RCDatabaseTest(const char * server, const char * user, const cha
     else
         m_password = password;
 
-    m_connection = mysql_init(NULL);
+    mysql_init(&m_connection);
     while (!Connect())
     {
 		 char buff[256];
@@ -28,43 +28,45 @@ RCDatabaseTest::RCDatabaseTest(const char * server, const char * user, const cha
         if (m_password == "quit")
             break;
     }
+    Connect();
 }
 
 MYSQL * RCDatabaseTest::Connect()
 {
-    return mysql_real_connect(m_connection,
+	mysql_init(&m_connection);
+    return mysql_real_connect(&m_connection,
                                      m_server.c_str(), m_user.c_str(), m_password.c_str(),
                                      m_database.c_str(), 0, NULL, 0);
 }
 
 bool RCDatabaseTest::Query(const char * query)
 {
-    if (mysql_query(m_connection, query))
+    if (mysql_query(&m_connection, query))
         return false;
-    m_result = mysql_use_result(m_connection);
+    m_result = mysql_use_result(&m_connection);
     return true;
 }
 
 string RCDatabaseTest::Fetch()
 {
-		MYSQL_ROW row;
-unsigned int num_fields;
-unsigned int i;
+	MYSQL_ROW row;
+	unsigned int num_fields;
+	unsigned int i;
 
-num_fields = mysql_num_fields(m_result);
-    if(  row = mysql_fetch_row(m_result))
-{
-   unsigned long *lengths;
-   lengths = mysql_fetch_lengths(m_result);
-   for(i = 0; i < num_fields; i++)
-   {
-       printf("[%.*s] ", (int) lengths[i],
-              row[i] ? row[i] : "NULL");
-   }
-   return"\n";
-}
-	else
-		return "";
+	num_fields = mysql_num_fields(m_result);
+		if(  row = mysql_fetch_row(m_result))
+	{
+	unsigned long *lengths;
+	lengths = mysql_fetch_lengths(m_result);
+	for(i = 0; i < num_fields; i++)
+	{
+		printf("[%.*s] ", (int) lengths[i],
+				row[i] ? row[i] : "NULL");
+	}
+	return"\n";
+	}
+		else
+			return "";
    /* char temp[256];
     m_row = mysql_fetch_row(m_result);
     if (m_row != NULL)
@@ -82,9 +84,8 @@ num_fields = mysql_num_fields(m_result);
 void RCDatabaseTest::Disconnect()
 {
     mysql_free_result(m_result);
-    mysql_close(m_connection);
+    mysql_close(&m_connection);
     m_result = 0;
-    m_connection = 0;
 }
 
 //bool RCDatabase::Insert(const char * insert)
