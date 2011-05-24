@@ -9,32 +9,32 @@
 #include <string.h>
 
 Motor::Motor()
-	:m_currentAccross(0.0), m_dutyCycles(0.0),
-	m_rpm(0.0), m_speed(0.0), m_temp(0.0), m_valid(true)
+	:/*m_currentAccross(0.0), m_dutyCycles(0.0),*/
+	m_rpm(0.0), m_speed(0.0), m_temp(0.0)/*, m_valid(true)*/
 {}
 
 
 Motor::Motor(const Motor & copy)
-	:m_currentAccross(copy.m_currentAccross), m_dutyCycles(copy.m_dutyCycles),
-	m_rpm(copy.m_rpm), m_speed(copy.m_speed), m_temp(copy.m_temp), m_valid(copy.m_valid)
+	:/*m_currentAccross(copy.m_currentAccross), m_dutyCycles(copy.m_dutyCycles),*/
+	m_rpm(copy.m_rpm), m_speed(copy.m_speed), m_temp(copy.m_temp)/*, m_valid(copy.m_valid)*/
 {}
 
 
 Motor::~Motor()
 {}
 
-
+/*
 double Motor::GetCurrentAccross()
 {
 	return m_currentAccross;
-}
+}*/
 
-
+/*
 double Motor::GetDutyCycles()
 {
 
 	return m_dutyCycles;
-}
+}*/
 
 
 double Motor::GetRpm()
@@ -57,38 +57,38 @@ double Motor::GetTemp(){
 }
 
 
-bool Motor::IsValid(){
-
-	return m_valid;
-}
+// bool Motor::IsValid(){
+// 
+// 	return m_valid;
+// }
 
 
 Motor & Motor::operator=(const Motor & copy)
 {
 	if(this != &copy)
 	{
-		m_currentAccross = copy.m_currentAccross;
-		m_dutyCycles = copy.m_dutyCycles;
+// 		m_currentAccross = copy.m_currentAccross;
+// 		m_dutyCycles = copy.m_dutyCycles;
 		m_rpm = copy.m_rpm;
 		m_speed = copy.m_speed;
 		m_temp = copy.m_temp;
-		m_valid = copy.m_valid;
+// 		m_valid = copy.m_valid;
 	}
 	
 	return  *this;
 }
 
 
-void Motor::SetCurrentAccross(double newVal){
+// void Motor::SetCurrentAccross(double newVal){
+// 
+// 	m_currentAccross = newVal;
+// }
 
-	m_currentAccross = newVal;
-}
 
-
-void Motor::SetDutyCycles(double newVal){
-
-	m_dutyCycles = newVal;
-}
+// void Motor::SetDutyCycles(double newVal){
+// 
+// 	m_dutyCycles = newVal;
+// }
 
 
 void Motor::SetRpm(double newVal){
@@ -109,10 +109,10 @@ void Motor::SetTemp(double newVal){
 }
 
 
-void Motor::ToggleValid()
-{
-	m_valid = m_valid?false:true;
-}
+// void Motor::ToggleValid()
+// {
+// 	m_valid = m_valid?false:true;
+// }
 
 // class Vehicle
 // {

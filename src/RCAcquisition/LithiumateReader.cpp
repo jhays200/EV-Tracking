@@ -92,7 +92,7 @@ void LithiumateReader::Parse()
   char * local_cell_res_buffer = strdup(m_buffers[currentRead].cell_res_buffer);
   m_buffers[currentRead].m_lock.unlock();
 
-  std::vector<Battery> & m_batteries = *GetBatteries();
+  std::vector<Battery> & m_batteries = GetBatteries();
 	
   for(int i(0); i < 100; ++i)
   {
