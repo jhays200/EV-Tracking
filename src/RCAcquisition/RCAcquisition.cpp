@@ -55,75 +55,42 @@ RCAcquisition::~RCAcquisition()
 //NOTE: Where the show starts
 void RCAcquisition::Start()
 {
+	DBaseInterface * dbase = new DBaseInterface;
 	iReport * velo = new VeloComm;
 	//GPSdata dataGPS;
 	BMS * dataBM = new BMS;
 	Motor * dataEM = new Motor;
-// 	TestObject dataTest0;
-// 	TestObject dataTest1;
-// 	TestObject dataTest2;
 	
 	daemon = true;
 
 	//setup daemon and signal handling
 	//SetupDaemon();
 	SetupSignalHadling();
-	//printf("Made it past signal setup\n");
 
-	//construct update classes
-	//m_updates[0] = new Garmin18Reader(&dataGPS, "/dev/ttyUSB0");
-	//m_updates[1] = new LithiumateReader(&dataBM, "/dev/ttyUSB1");
-	//m_updates[2] = new SolitonReader(&dataEM);
-	
-// 	m_updates[0] = new TestModule(&dataTest0, "/tmp/bms_pipe");
-// 	m_updates[1] = new TestModule(&dataTest1, "/tmp/gps_pipe");
-// 	m_updates[2] = new TestModule(&dataTest2, "/tmp/emc_pipe");
-	//printf("Made it the Garmin Setup\n");
-/*	cout << "Setting up TestBMS" << endl;*/
 	m_updates[0] = new TestBMS(dataBM, "/tmp/bms_pipe");
 	m_updates[1] = new TestEMC(dataEM, "/tmp/emc_pipe");
+
 /*	cout << "TestBMS ready" << endl;*/
 	boost::this_thread::sleep(boost::posix_time::seconds(1));
 
 	while(daemon)
 	{
-// 		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[2]));
-// 		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[1]));
-// 		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[0]));
-/*		cout << "Spinning off thards...";*/
 		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[0]));
 		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[1]));
-/*		cout << "joining...";*/
 		m_activeThreads.join_all();
-/*		cout << "done." << endl;*/
 		
-		cout << "--BMS--\n" 
-			 << "Charge: " << dataBM->Getcharge() << endl;
-		vector<Battery> & batteries = *dataBM->GetBatteries();
+		cout << "Reporting" << endl;
+		//BMS Report
+		dbase->BMSInsert(dataBM->Getcharge());
+		vector<Battery> & batteries = dataBM->GetBatteries();
 		int count = 0;
 		for(vector<Battery>::iterator itr = batteries.begin(); 
 								itr != batteries.end(); ++itr,++count)
 		{
-			cout << "Battery - " << count << '\n'
-				 << "Current: " << (*itr).Getcurrent() << '\n'
-				 << "Resist: " << (*itr).Getresist() << '\n'
-				 << "Temp: " << (*itr).Gettemp() << '\n'
-				 << "Voltage: " << (*itr).Getvolt() << endl;
+			dbase->BatteryInsert(count,itr->Getcurrent(),itr->Getresist(),itr->Gettemp(),itr->Getvolt());
 		}
-		cout << "--EMC--\n"
-			 << "RPM: " << dataEM->GetRpm() << '\n'
-			 << "Speed: " << dataEM->GetSpeed() << '\n'
-			 << "Temp: " << dataEM->GetTemp() << endl;
-			 
-// 		cout << "Thread 0, x value: " << dataTest0.GetX() << endl;
-// 		cout << "Thread 1, x value: " << dataTest1.GetX() << endl;
-// 		cout << "Thread 2, x value: " << dataTest2.GetX() << endl;
-		//printf("\nRPM: %i\n", dataEM.GetRpm());
-		//printf("Temp: %i\n", dataEM.GetTemp());
-		//printf("Current: %i\n", dataEM.GetCurrentAccross());
-		//printf("\nLatitude: %f\n", dataGPS.GetLatitude());
-		//printf("Speed: %f\n", dataGPS.GetSpeed());
-		//printf("Longitude: %f\n", dataGPS.GetLongitude());
+		//EMC
+		dbase->ZillaInsert(dataEM->GetRpm(),dataEM->GetSpeed());
 
 		velo->SetBMSref(dataBM);
 		velo->SetMotorRef(dataEM);
@@ -203,4 +170,3 @@ void RCAcquisition::SetupSignalHadling()
 	signal(SIGQUIT, &RCAcquisition::Stop);
 	signal(SIGTERM, &RCAcquisition::Stop);
 }
-

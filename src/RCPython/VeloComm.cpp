@@ -192,8 +192,8 @@ void VeloComm::AppendBatteryStr(string& buff)
 	if(m_bms != 0)
 	{
 		unsigned int j = 0;
-		for(std::vector<Battery>::iterator i = m_bms->GetBatteries()->begin();
-			i != m_bms->GetBatteries()->end();
+		for(std::vector<Battery>::iterator i = m_bms->GetBatteries().begin();
+			i != m_bms->GetBatteries().end();
 			++i
 		)
 			{
@@ -271,22 +271,7 @@ void VeloComm::AppendMotorStr(string& buff)
 {
 	if(m_motor != 0)
 	{
-		char data[30];
-		
-		buff.append(SENSOR_TAGS[MCURRENT]);
-		
-		sprintf(data, "%f", m_motor->GetCurrentAccross());
-		buff.append(data);
-		
-		buff.append(SENSOR_ETAGS[MCURRENT]);
-		
-		buff.append(SENSOR_TAGS[DUTYCYCLES]);
-		
-		sprintf(data, "%f", m_motor->GetDutyCycles());
-		buff.append(data);
-		
-		buff.append(SENSOR_ETAGS[DUTYCYCLES]);
-		
+		char data[30];		
 		buff.append(SENSOR_TAGS[RPM]);
 		
 		sprintf(data, "%f", m_motor->GetRpm());

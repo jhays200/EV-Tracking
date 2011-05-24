@@ -38,14 +38,14 @@ public:
   ~RCAcquisition();
   void Start();
   static void Stop(int sig);
-
+ 
 private:
 	//private methods
 
 	void SetupDaemon();
 	static void SetupSignalHadling();
 
-
+	void Report();
 	//private data stuff
   static bool daemon;
 

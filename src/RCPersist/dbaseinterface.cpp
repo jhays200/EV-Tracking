@@ -7,10 +7,6 @@ using std::cout;
 using std::string;
 #include <mysql/my_global.h>
 
-
-/*
-	
-*/
 DBaseInterface::DBaseInterface()
 {
 	char query[256];
@@ -27,32 +23,16 @@ DBaseInterface::DBaseInterface()
 
 	RCDatabaseTest t(server.c_str(),user.c_str(),database.c_str(),
 		password.c_str());
-/*
-	printf("Enter a query: ");
-	std::cin.getline(query, 256);
-
-	t.Query(query);
-
-	result = t.Fetch();
-	while(!result.empty())
-	{
-		printf("\n",result.c_str());
-		result = t.Fetch();
-	}*/
-
 }
 
-void DBaseInterface::BMSInsert(double avgBattCurrent,
-	double avgBatteryResist,
-	double avgBatteryVolt,
-	double avgBattTemp)
+void DBaseInterface::BMSInsert(double charge)
 {
 	char buffer[256];
 	RCDatabaseTest t(server.c_str(),user.c_str(),database.c_str(),
 		password.c_str());
 
-	string query = "INSERT INTO BMS (AvgVolts, AvgAmps, AvgResist, AvgTemp, trip_id) VALUES( ";
-	sprintf(buffer,"%f",avgBatteryVolt);
+	string query = "INSERT INTO BMS (Charge, trip_id) VALUES( ";
+	/*sprintf(buffer,"%f",avgBatteryVolt);
 	query += buffer;
 	query += ", ";
 	sprintf(buffer,"%f",avgBattCurrent);
@@ -60,18 +40,16 @@ void DBaseInterface::BMSInsert(double avgBattCurrent,
 	query += ", ";
 			sprintf(buffer,"%f",avgBatteryResist);
 		query += buffer;
-	query += ", ";
-// 			sprintf(buffer,"%i",charge);
-// 		query += buffer;
-// 	query += ", ";
+	query += ", ";*/
+ 			sprintf(buffer,"%i",charge);
+ 		query += buffer;
+ 	/*query += ", ";
 					sprintf(buffer,"%f",avgBattTemp);
-		query += buffer;
+		query += buffer;*/
 	query += ", ";
 	query += "(select MAX(trip_id) from trip))";
 	t.Query(query.c_str());
 	cout << query;
-
-	
 }
 
 void DBaseInterface::GPSInsert(
@@ -100,27 +78,22 @@ void DBaseInterface::GPSInsert(
 	t.Query(query.c_str());
 }
 
-void DBaseInterface::ZillaInsert(	double currentAcross,
-	double dutyCycles,
+void DBaseInterface::ZillaInsert(
 	double rpm,
-	double speed,
-	double temp)
+	double speed)
 {
 		char buffer[256];
 	RCDatabaseTest t(server.c_str(),user.c_str(),database.c_str(),
 		password.c_str());
 
-	string query = "INSERT INTO MOTOR_DATA (trip_id, Speed, AvgDutyCycles, RPM, CurrentAccross) VALUES((select MAX(trip_id) from trip), ";
+	string query = "INSERT INTO MOTOR_DATA (trip_id, Speed, RPM) VALUES((select MAX(trip_id) from trip), ";
 	sprintf(buffer,"%f",speed);
 	query += buffer;
 	query += ", ";
-	sprintf(buffer,"%f",dutyCycles);
+	sprintf(buffer,"%f",rpm);
 	query += buffer;
 	query += ", ";
-			sprintf(buffer,"%f",rpm);
-		query += buffer;
-	query += ", ";
-			sprintf(buffer,"%f",currentAcross);
+			sprintf(buffer,"%f",speed);
 		query += buffer;
 	query += ");";
 	t.Query(query.c_str());

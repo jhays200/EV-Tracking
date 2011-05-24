@@ -30,14 +30,14 @@ def RunProgram():
          os.kill(a, 15)
        #timeEnd = time.time()
 
-def ProcessData():
-       f = open("test.txt", "w")
+def ProcessGPS():
+       f = open("gps_test.txt", "w")
 
        if f.writable():
                i = 0
                conn = MySQLdb.connect(host = "localhost",
                                                                user = "root",
-                                                               passwd = "starwars",
+                                                               passwd = "maverick",
                                                                db = "jp")
                cursor = conn.cursor()
                cursor.execute("SELECT Longitude, Lattitude from GPS_DATA")
@@ -59,10 +59,70 @@ def ProcessData():
 
        f.close()
 
+def ProcessEMC():
+	f = open("emc_test.txt", "w")
+
+	if f.writable():
+			i = 0
+			conn = MySQLdb.connect(host = "localhost",
+															user = "root",
+															passwd = "maverick",
+															db = "jp")
+			cursor = conn.cursor()
+			cursor.execute("SELECT SPEED, RPM from MOTOR_DATA")
+			result_set = cursor.fetchall()
+			f.write(unicode("speed,rpm\n"))
+
+			for row in result_set:
+					i = i + 1
+					print "Speed: ", row[0], " RPM: ", row[1]
+					f.write(unicode (str(i) + ',' + str(row[1]) + '\n') )
+
+			if(raw_input("Do you want to clear emc data (y/n): ") == "y"):
+					cursor.execute("DELETE from MOTOR_DATA;")
+
+			cursor.close()
+			conn.close()
+	else:
+			print "Unable to open file test.txt"
+
+	f.close()
+       
+def ProcessBMS():
+	f = open("bms_test.txt", "w")
+
+	if f.writable():
+			i = 0
+			conn = MySQLdb.connect(host = "localhost",
+															user = "root",
+															passwd = "maverick",
+															db = "jp")
+			cursor = conn.cursor()
+			cursor.execute("SELECT Charge from BMS")
+			result_set = cursor.fetchall()
+			f.write(unicode("charge\n"))
+
+			for row in result_set:
+					i = i + 1
+					print "Charge: ", row[0]
+					f.write(unicode (str(i) + '\n') )
+
+			if(raw_input("Do you want to clear bms data (y/n): ") == "y"):
+					cursor.execute("DELETE from BMS;")
+
+			cursor.close()
+			conn.close()
+	else:
+			print "Unable to open file test.txt"
+
+	f.close()
+       
 print "Testing pulling from db"
 try:
  RunProgram()
- ProcessData()
+ ProcessBMS()
+ ProcessEMC()
+ ProcessGPS()
 except:
  print "Unexpected Error"
  exit(1)

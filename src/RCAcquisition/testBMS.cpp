@@ -76,7 +76,7 @@ void TestBMS::Update()
 	battery.Setresist(temp[1]);
 	battery.Settemp(temp[2]);
 	battery.Setvolt(temp[3]);
-	vector<Battery> & batteries = *bms.GetBatteries();
+	vector<Battery> & batteries = bms.GetBatteries();
 	//batteries.clear();
 	batteries.push_back(battery);
 }

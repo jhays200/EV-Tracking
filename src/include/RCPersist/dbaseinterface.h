@@ -16,25 +16,20 @@ class DBaseInterface
 	string password;
 public:
 	DBaseInterface();
-	void BMSInsert(double avgBattCurrent,
-	double avgBatteryResist,
-	double avgBatteryVolt,
-	double avgBattTemp);
+	void BMSInsert(double charge);
 
 	void GPSInsert(double latitude,
 	double longitude,
 	float speed);
 
-	void ZillaInsert(	double currentAcross,
-	double dutyCycles,
+	void ZillaInsert(
 	double rpm,
-	double speed,
-	double temp);
+	double speed);
 
 	void BatteryInsert(int battnum,
 		double current,
-	double resist,
-	float temp,
-	double volt);
+		double resist,
+		float temp,
+		double volt);
 };
 

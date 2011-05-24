@@ -19,4 +19,4 @@ set(CPPFILES
 	main.cpp)
 
 add_executable(RCAcquisition ${CPPFILES})
-target_link_libraries(RCAcquisition RCObjects VeloCommLib ${Boost_LIBRARIES})
+target_link_libraries(RCAcquisition RCObjects VeloCommLib RCPersist ${Boost_LIBRARIES})
