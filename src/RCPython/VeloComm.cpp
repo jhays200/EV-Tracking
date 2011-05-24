@@ -162,7 +162,7 @@ void VeloComm::Report()
 
 void VeloComm::AppendGPSstr(string& buff)
 {
-	if(m_gps->IsValid())
+	if(m_gps != 0)
 	{
 		char buffer[50];
 		
@@ -276,30 +276,35 @@ void VeloComm::AppendMotorStr(string& buff)
 		buff.append(SENSOR_TAGS[MCURRENT]);
 		
 		sprintf(data, "%f", m_motor->GetCurrentAccross());
+		buff.append(data);
 		
 		buff.append(SENSOR_ETAGS[MCURRENT]);
 		
 		buff.append(SENSOR_TAGS[DUTYCYCLES]);
 		
 		sprintf(data, "%f", m_motor->GetDutyCycles());
+		buff.append(data);
 		
 		buff.append(SENSOR_ETAGS[DUTYCYCLES]);
 		
 		buff.append(SENSOR_TAGS[RPM]);
 		
 		sprintf(data, "%f", m_motor->GetRpm());
+		buff.append(data);
 		
 		buff.append(SENSOR_ETAGS[RPM]);
 		
 		buff.append(SENSOR_TAGS[MSPEED]);
 		
 		sprintf(data, "%f", m_motor->GetSpeed());
+		buff.append(data);
 		
 		buff.append(SENSOR_ETAGS[MSPEED]);
 		
 		buff.append(SENSOR_TAGS[MTEMP]);
 		
 		sprintf(data, "%f", m_motor->GetTemp());
+		buff.append(data);
 		
 		buff.append(SENSOR_ETAGS[MTEMP]);
 

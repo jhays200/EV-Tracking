@@ -1,6 +1,11 @@
 #include "RCPersist/mysqltest.h"
 #include <string>
 using std::string;
+/*
+	Class :: DBaseInterface
+	Written By : Joshua "Tank" Dutton
+	purpose: Allow the system to interface with the mysql database
+*/
 class DBaseInterface
 {
 	string server;

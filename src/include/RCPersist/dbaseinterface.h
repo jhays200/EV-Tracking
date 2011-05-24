@@ -1,3 +1,4 @@
+#pragma once
 #include "RCPersist/mysqltest.h"
 #include <string>
 using std::string;

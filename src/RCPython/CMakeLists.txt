@@ -2,6 +2,7 @@
 #project(python_test)
 
 include_directories("/usr/include/boost/")
+include(${CMAKE_SOURCE_DIR})
 
 #copy python file to binary dir
 file(COPY VeloComm.py DESTINATION ${CMAKE_BINARY_DIR}/bin)

@@ -1,11 +1,11 @@
 #pragma once
 #include <boost/concept_check.hpp>
 #include <boost/thread/mutex.hpp>
-
+#define BUFF_SIZE 100
 struct ProBuffer
 {
   boost::mutex lock;
-  char 	m_buff[256];
+  char 	m_buff[BUFF_SIZE];
 };
 
 /****************************************

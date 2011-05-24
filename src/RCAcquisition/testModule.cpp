@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
+#include "RCObjects/testObject.hpp"
 using namespace std;
 TestModule::TestModule(TestObject * data, const char * filepath)
 		:iNamedPipeReader(data)

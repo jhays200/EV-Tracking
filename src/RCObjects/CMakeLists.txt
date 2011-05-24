@@ -6,6 +6,7 @@ set(CPPFILES #testObject.cpp
     GPSdata.cpp
     Motor.cpp
     Time.cpp
-    Trip.cpp)
+    Trip.cpp
+	testObject.cpp)
 
 add_library(RCObjects STATIC ${CPPFILES})

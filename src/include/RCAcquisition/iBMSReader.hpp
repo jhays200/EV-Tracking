@@ -17,7 +17,7 @@ public:
 	virtual ~iBMSReader(){}
 	virtual void Update() = 0;
 	
-	std::vector<Battery> * GetBatteries();
+	std::vector<Battery> & GetBatteries();
 	BMS & GetBMS();
 private:
 	BMS * m_data;

@@ -11,17 +11,11 @@ set(CPPFILES
 	serial.cpp
 	iEMController.cpp
 	SolitonReader.cpp
-<<<<<<< HEAD
 	RCAcquisition.cpp
 	testModule.cpp
 	iNamedPipeReader.cpp
 	testBMS.cpp
 	testEMC.cpp
-=======
-	#RCAcquisition.cpp
-	#testModule.cpp
-	#iNamedPipeReader.cpp
->>>>>>> 4e6d0ec9eb1eaeda93f1b8d994252037349c9071
 	main.cpp)
 
 add_executable(RCAcquisition ${CPPFILES})

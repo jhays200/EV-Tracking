@@ -9,6 +9,10 @@
 #include "testBMS.hpp"
 #include "testEMC.hpp"
 // #include <SolitonReader.hpp>
+#include <iostream>
+#include "../RCPython/VeloComm.hpp"
+#include "RCPersist/dbaseinterface.h"
+
 
 using namespace std;
 using namespace boost;
@@ -51,6 +55,7 @@ RCAcquisition::~RCAcquisition()
 //NOTE: Where the show starts
 void RCAcquisition::Start()
 {
+	iReport * velo = new VeloComm;
 	//GPSdata dataGPS;
 	BMS * dataBM = new BMS;
 	Motor * dataEM = new Motor;
@@ -94,7 +99,7 @@ void RCAcquisition::Start()
 		
 		cout << "--BMS--\n" 
 			 << "Charge: " << dataBM->Getcharge() << endl;
-		vector<Battery> & batteries = dataBM->GetBatteries();
+		vector<Battery> & batteries = *dataBM->GetBatteries();
 		int count = 0;
 		for(vector<Battery>::iterator itr = batteries.begin(); 
 								itr != batteries.end(); ++itr,++count)
@@ -119,8 +124,11 @@ void RCAcquisition::Start()
 		//printf("\nLatitude: %f\n", dataGPS.GetLatitude());
 		//printf("Speed: %f\n", dataGPS.GetSpeed());
 		//printf("Longitude: %f\n", dataGPS.GetLongitude());
-		//dbase.GPSInsert(dataGPS.GetLatitude(),dataGPS.GetLongitude(),dataGPS.GetSpeed());
 
+		velo->SetBMSref(dataBM);
+		velo->SetMotorRef(dataEM);
+		velo->Report();
+		*dataBM = BMS();
 		boost::this_thread::sleep(boost::posix_time::seconds(1));
 	}
 

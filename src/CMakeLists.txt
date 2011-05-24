@@ -16,7 +16,7 @@ include_directories(${HEADER_DIR})
 
 #static libraries
 add_subdirectory(RCObjects)
-#add_subdirectory(RCPersist)
+add_subdirectory(RCPersist)
 add_subdirectory(RCPython)
 
 #executables

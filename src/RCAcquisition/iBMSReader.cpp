@@ -1,6 +1,6 @@
 #include "iBMSReader.hpp"
 
-std::vector<Battery> & iBMSReader::GetBatteries()
+std::vector<Battery> * iBMSReader::GetBatteries()
 {
 	return m_data->GetBatteries();
 }

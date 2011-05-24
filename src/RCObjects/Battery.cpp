@@ -15,7 +15,9 @@ Battery::Battery(){
 }
 
 
-Battery::Battery(const Battery & copy){
+Battery::Battery(const Battery & copy)
+:current(copy.current), resist(copy.resist), temp(copy.temp), volt(copy.volt)
+{
 
 }
 

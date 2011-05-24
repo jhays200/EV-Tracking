@@ -1,6 +1,7 @@
 #include "testBMS.hpp"
 #include <vector>
 #include <string>
+#include <iostream>
 using std::vector;
 using std::cout;
 using std::endl;
@@ -75,7 +76,7 @@ void TestBMS::Update()
 	battery.Setresist(temp[1]);
 	battery.Settemp(temp[2]);
 	battery.Setvolt(temp[3]);
-	vector<Battery> & batteries = bms.GetBatteries();
-	batteries.clear();
+	vector<Battery> & batteries = *bms.GetBatteries();
+	//batteries.clear();
 	batteries.push_back(battery);
 }
