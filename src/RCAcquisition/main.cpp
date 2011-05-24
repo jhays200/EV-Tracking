@@ -26,8 +26,8 @@
 
 int main()
 {
-	RCAcquisition test("./data.log");
-	test.Start();
+	RCAcquisition t("./data.log");
+	t.Start();
 // 	BMS testBMS;
 // 	GPSdata testGPS;
 // 	Motor testMotor;

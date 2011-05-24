@@ -81,16 +81,27 @@ void RCAcquisition::Start()
 		cout << "Reporting" << endl;
 		//BMS Report
 		dbase->BMSInsert(dataBM->Getcharge());
+		
+		cout << "Charge: " << dataBM->Getcharge() << endl;
+		
 		vector<Battery> & batteries = dataBM->GetBatteries();
 		int count = 0;
 		for(vector<Battery>::iterator itr = batteries.begin(); 
 								itr != batteries.end(); ++itr,++count)
 		{
+			cout << "Battery ID: " << count << '\n'
+				<< "Current: " << itr->Getcurrent() << '\n'
+				<< "Resist: " << itr->Getresist() << '\n'
+				<< "Temp: " << itr->Gettemp() << '\n'
+				<< "Voltage: " << itr->Getvolt() << endl;
+				
 			dbase->BatteryInsert(count,itr->Getcurrent(),itr->Getresist(),itr->Gettemp(),itr->Getvolt());
 		}
 		//EMC
-		dbase->ZillaInsert(dataEM->GetRpm(),dataEM->GetSpeed());
-
+		dbase->EMCInsert(dataEM->GetRpm(),dataEM->GetSpeed());
+		cout << "RPM: " << dataEM->GetRpm() << '\n'
+			 << "Speed: " << dataEM->GetSpeed() << endl;
+			 
 		velo->SetBMSref(dataBM);
 		velo->SetMotorRef(dataEM);
 		velo->Report();
