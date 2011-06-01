@@ -1,56 +1,87 @@
 #pragma once
-#include <boost/asio.hpp>
 #include <boost/thread.hpp>
-using boost::asio::ip::udp;
 
 #include "iEMController.hpp"
-//Port that the Soliton Motor Controller talks on
-const int SOLITON_PORT = 48879;
 
-const int MAXBUFLEN = 100;
+#include  <stdio.h>
+#include  <stdlib.h>
+#include  <unistd.h>
+#include  <errno.h>
+#include  <string.h>
+#include  <sys/types.h>
+#include  <sys/socket.h>
+#include  <netinet/in.h>
+#include  <arpa/inet.h>
+#include  <netdb.h>
 
-//Error / status codes
+#define MYPORT "48879"
+#define MAXBUFLEN 100
 
-const int STARTING_UP =	 		0b0000000000000000;
-const int PRECHARGING =	 		0b0000000000000001;
-const int ENGAGING_CONTACTORS =		0b0000000000000010;
-const int WAITING_FOR_START_STIG =	0b0000000000000011;
-const int THROTTLE_NOT_ZERO =		0b0000000000000100;
-const int RUNNING	=		0b0000000000000101;
-//6-18 not used
-const int ADC_OUT_OF_RANGE =		0b0000000000010011;
-const int CURRENT_SENSOR_FAILURE =	0b0000000000010100;
-const int ZERO_VOLT_AFTER_PCHARGE =	0b0000000000010101;
+enum
+  {
+    LOG_MSTICS = 1,
+    LOG_MINTICS,
+    LOG_AUXV,
+    LOG_PACKV,
+    LOG_CURRENT,
+    LOG_TEMP,
+    LOG_INPUT3,
+    LOG_INPUT2,
+    LOG_INPUT1,
+    LOG_THROTTLE,
+    LOG_CPULOAD,
+    LOG_PWM,
+    LOG_RPM,
+    LOG_RPMERROR,
+    LOG_MODE,
+    LOG_NUMFIELDS
+  };
 
+#define LIMIT_HIMOTORV	0x8000
+#define LIMIT_HIMOTORP	0x4000
+#define LIMIT_MTEMP	0x2000
+#define LIMIT_OVERREV	0x1000
 
-const int	FAULTY_THROTTLE_SIGNAL=	0b0000000000010111;
-const int	V12_TOO_HIGH=		0b0000000000011000;
-const int	V12_TOO_LOW=		0b0000000000011001;
-const int	PVOLTAGE_TOO_HIGH=	0b0000000000011010;
-const int	PVOLTAGE_TOO_LOW=	0b0000000000011011;
-const int 	IGBT_DESATURATION=	0b0000000000011100;
-const int	OUT_OF_MEMORY=		0b0000000000011101;
-const int	SOFTWARE_ERROR=		0b0000000000011110;
-const int	USER_SHUTDOWN=		0b0000000000011111;
+#define LIMIT_LOWPACKV	0x0800
+#define LIMIT_HIPACKC	0x0400
+#define LIMIT_HVC	0x0200
+#define LIMIT_CTEMP	0x0100
 
-//Mode codes
-const int	THROTTLE_BLOCKED=	0b0000000001000000;
-const int	SLEWRATE_ON=		0b0000000010000000;
-const int 	HIGH_CONTROLELR_TEMP=	0b0000000100000000;
-const int	HIGH_VOLTAGE_CURRENT=	0b0000001000000000;
-const int	HIGH_PACK_CURRENT=	0b0000010000000000;
-const int 	LOW_PACK_VOLTAGE=	0b0000100000000000;
-const int 	OVER_REV=		0b0001000000000000;
-const int	HIGH_MOTOR_TEMP=	0b0010000000000000;
-const int	HIGH_MOTOR_POWER=	0b0100000000000000;
-const int	HIGH_MOTOR_VOLTAGE=	0b1000000000000000;
+#define LIMIT_SLEWRATE	0x0080
+#define LIMIT_BLOCKED	0x0040
 
 struct SolitonBuffer
 {
 	boost::mutex lock;
-	char buffer[256];
+	char buffer[MAXBUFLEN];
+	uint16_t oldmstic;
 };
 
+char *mode[32] =
+  {
+    "Starting up",
+    "Precharge phase",
+    "Engaging contactors",
+    "Waiting for startsignal",
+    "Throttle not in zero pos",
+    "Running",
+    "Error 6","Error 7","Error 8","Error 9","Error 10","Error 11","Error 12",
+    "Error 13", "Error 14","Error 15","Error 16","Error 17","Error 18",
+    "Error: ADC out of range",
+    "Error: Current sensor failure",
+    "Error: Zero voltage after precharge",
+    "Error: Pack voltage too low after precharge",
+    "Error: Faulty throttle signal",
+    "Error: 12 Volt too high",
+    "Error: 12 Volt too low",
+    "Error: Pack voltage too high",
+    "Error: Pack voltage too low",
+    "Error: IGBT desaturation",
+    "Error: Out of memory",
+    "Error: Software error",
+    "Controller shut down by user"
+  };
+  
 /**********************************************
  * Class: SolitonReader
  *
@@ -61,22 +92,26 @@ struct SolitonBuffer
 class SolitonReader: public iEMController
 {
 public:
-    SolitonReader(Motor * data, const char * ip_address = "127.0.0.1", int port = SOLITON_PORT);
+    SolitonReader(Motor * data);
 	~SolitonReader();
     void Update();
 private:
-  //TODO: Use the message protocol to make CheckError useful
-  //void CheckError();
-  void Parse();
+	//TODO: Use the message protocol to make CheckError useful
+	//void CheckError();
+	void Parse();
 
-  void UpdateLoop();
+	void UpdateLoop();
 
-  //boos::asio stuff...
-  boost::asio::io_service service;
-  udp::endpoint receiver_endpoint;
-  udp::socket socket;
-  boost::thread * m_update;
+	boost::thread * m_update;
 
-  unsigned short int current_write;
-  SolitonBuffer buffer[5];
+	unsigned short int current_write;
+	SolitonBuffer buffer[5];
+  
+	int sockfd;
+	struct addrinfo hints, *servinfo, *p;
+	int rv;
+	int numbytes;
+	char buf[MAXBUFLEN];
+	uint16_t *debug;
+	FILE *log;
 };
