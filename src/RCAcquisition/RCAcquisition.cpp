@@ -7,12 +7,12 @@
 #include "RCAcquisition/Garmin18Reader.hpp"
 /*#include "RCAcquisition/LithiumateReader.hpp"*/
 #include "testBMS.hpp"
-#include "testEMC.hpp"
+//#include "testEMC.hpp"
 // #include <SolitonReader.hpp>
 #include <iostream>
 #include "../RCPython/VeloComm.hpp"
 #include "RCPersist/RCDatabase.hpp"
-
+#include "SolitonReader.hpp"
 
 using namespace std;
 using namespace boost;
@@ -58,7 +58,7 @@ void RCAcquisition::Start()
 	RCDatabase * dbase = new RCDatabase("localhost","root","maverick","jp");
 	iReport * velo = new VeloComm;
 	//GPSdata dataGPS;
-	BMS * dataBM = new BMS;
+	//BMS * dataBM = new BMS;
 	Motor * dataEM = new Motor;
 	
 	daemon = true;
@@ -67,57 +67,59 @@ void RCAcquisition::Start()
 	//SetupDaemon();
 	SetupSignalHadling();
 
-	m_updates[0] = new TestBMS(dataBM, "/tmp/bms_pipe");
-	m_updates[1] = new TestEMC(dataEM, "/tmp/emc_pipe");
+	//m_updates[0] = new Garmin18Reader(dataGPS, "/dev/ttyUSB0");
+	m_updates[1] = new SolitonReader(dataEM);
 
 	boost::this_thread::sleep(boost::posix_time::seconds(1));
 
 	while(daemon)
 	{
-		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[0]));
+		cout << "Updating" << endl;
+		//m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[0]));
 		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[1]));
 		m_activeThreads.join_all();
 		
-		cout << "Reporting" << endl;
+		
+		//cout << "Reporting" << endl;
 		//BMS Report
-		dbase->BMSInsert(dataBM->Getcharge());
+		//dbase->BMSInsert(dataBM->Getcharge());
 		
-		cout << "Charge: " << dataBM->Getcharge() << endl;
+		//cout << "Charge: " << dataBM->Getcharge() << endl;
 		
-		vector<Battery> & batteries = dataBM->GetBatteries();
-		int count = 0;
-		for(vector<Battery>::iterator itr = batteries.begin(); 
-								itr != batteries.end(); ++itr,++count)
-		{
-			cout << "Battery ID: " << count << '\n'
-				<< "Current: " << itr->Getcurrent() << '\n'
-				<< "Resist: " << itr->Getresist() << '\n'
-				<< "Temp: " << itr->Gettemp() << '\n'
-				<< "Voltage: " << itr->Getvolt() << endl;
-				
-			dbase->BatteryInsert(count,itr->Getcurrent(),itr->Getresist(),itr->Gettemp(),itr->Getvolt());
-		}
+		//vector<Battery> & batteries = dataBM->GetBatteries();
+		//int count = 0;
+		//for(vector<Battery>::iterator itr = batteries.begin(); 
+		//						itr != batteries.end(); ++itr,++count)
+		//{
+		//	cout << "Battery ID: " << count << '\n'
+		//		<< "Current: " << itr->Getcurrent() << '\n'
+		//		<< "Resist: " << itr->Getresist() << '\n'
+		//		<< "Temp: " << itr->Gettemp() << '\n'
+		//		<< "Voltage: " << itr->Getvolt() << endl;
+		//		
+		//	dbase->BatteryInsert(count,itr->Getcurrent(),itr->Getresist(),itr->Gettemp(),itr->Getvolt());
+		//}
 		//EMC
-		dbase->EMCInsert(dataEM->GetRpm(),dataEM->GetSpeed());
-		cout << "RPM: " << dataEM->GetRpm() << '\n'
-			 << "Speed: " << dataEM->GetSpeed() << endl;
+		//dbase->EMCInsert(dataEM->GetRpm(),dataEM->GetSpeed());
+		//cout << "RPM: " << dataEM->GetRpm() << '\n'
+		//	 << "Speed: " << dataEM->GetSpeed() << endl;
 			 
-		velo->SetBMSref(dataBM);
+		//velo->SetBMSref(dataBM);
 		velo->SetMotorRef(dataEM);
 		velo->Report();
-		*dataBM = BMS();
-		boost::this_thread::sleep(boost::posix_time::seconds(1));
+		//*dataBM = BMS();
+		boost::this_thread::sleep(boost::posix_time::microseconds(300000));
 	}
 
 	fprintf(m_logFile, "Made it outside the loop\n");
 
 
-	delete m_updates[0];
-	m_updates[0] = 0;
+	//delete m_updates[0];
+	//m_updates[0] = 0;
 	delete m_updates[1];
 	m_updates[1] = 0;
 	
-	delete dataBM;
+	//delete dataBM;
 	delete dataEM;
 
 	exit(EXIT_SUCCESS);

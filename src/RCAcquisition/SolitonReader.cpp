@@ -1,6 +1,29 @@
 #include "RCAcquisition/SolitonReader.hpp"
 #include "RCObjects/Motor.hpp"
-
+char *mode[32] =
+  {
+    "Starting up",
+    "Precharge phase",
+    "Engaging contactors",
+    "Waiting for startsignal",
+    "Throttle not in zero pos",
+    "Running",
+    "Error 6","Error 7","Error 8","Error 9","Error 10","Error 11","Error 12",
+    "Error 13", "Error 14","Error 15","Error 16","Error 17","Error 18",
+    "Error: ADC out of range",
+    "Error: Current sensor failure",
+    "Error: Zero voltage after precharge",
+    "Error: Pack voltage too low after precharge",
+    "Error: Faulty throttle signal",
+    "Error: 12 Volt too high",
+    "Error: 12 Volt too low",
+    "Error: Pack voltage too high",
+    "Error: Pack voltage too low",
+    "Error: IGBT desaturation",
+    "Error: Out of memory",
+    "Error: Software error",
+    "Controller shut down by user"
+  };
 /******************************************
  * Function: Ctor
  *
@@ -27,22 +50,27 @@ SolitonReader::SolitonReader(Motor * data):
 	for(p = servinfo; p != NULL; p = p->ai_next) {
 		if ((sockfd = socket(p->ai_family, p->ai_socktype,
 				p->ai_protocol)) == -1) {
-		perror("listener: socket");
-		continue;
+			perror("listener: socket");
+			continue;
 		}
 		
 		if (bind(sockfd, p->ai_addr, p->ai_addrlen) == -1) {
-		close(sockfd);
-		perror("listener: bind");
-		continue;
+			close(sockfd);
+			perror("listener: bind");
+			continue;
 		}
 		break;
 	}
 	freeaddrinfo(servinfo);
+	m_update = new boost::thread(boost::bind(&SolitonReader::UpdateLoop,this));
 }
 
 SolitonReader::~SolitonReader()
 {
+	m_update->interrupt();
+	m_update->join();
+	delete m_update;
+	m_update = 0;
 }
 
 void SolitonReader::Update()
@@ -67,6 +95,7 @@ void SolitonReader::UpdateLoop()
 		buffer[current_write].lock.unlock();
 
 		boost::this_thread::restore_interruption ri(di);
+		boost::this_thread::sleep(boost::posix_time::microseconds(100000));
 	}
 }
 
@@ -81,9 +110,10 @@ void SolitonReader::Parse()
 	int currentRead = current_write;
 	currentRead = currentRead -1 > 0 ? currentRead -1:0;
 	SolitonBuffer locBuff;
-	
+
 	buffer[currentRead].lock.lock();
-	memcpy(&locBuff, &(buffer[currentRead]), sizeof(buffer[currentRead]));
+	strcpy(locBuff.buffer,buffer[currentRead].buffer);
+	locBuff.oldmstic = buffer[currentRead].oldmstic;
 	buffer[currentRead].lock.unlock();
 	
 	if (numbytes && !locBuff.buffer[0])
@@ -144,6 +174,15 @@ void SolitonReader::Parse()
 			
 			debug[LOG_MODE] & LIMIT_SLEWRATE ? ", Slewrate active" : "",
 			debug[LOG_MODE] & LIMIT_BLOCKED ? ", Throttle blocked" : "");
+		
+		GetMotorData().SetRpm((double)debug[LOG_RPM]);
+		GetMotorData().SetTemp(((double) debug[LOG_TEMP])/10.0);
+		static int stuff = 0;
+		stuff += 10;
+		stuff %= 200;
+		GetMotorData().SetSpeed((double)stuff);
+		
+		
 	}
 	else
 	{

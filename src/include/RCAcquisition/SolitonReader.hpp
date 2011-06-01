@@ -57,30 +57,7 @@ struct SolitonBuffer
 	uint16_t oldmstic;
 };
 
-char *mode[32] =
-  {
-    "Starting up",
-    "Precharge phase",
-    "Engaging contactors",
-    "Waiting for startsignal",
-    "Throttle not in zero pos",
-    "Running",
-    "Error 6","Error 7","Error 8","Error 9","Error 10","Error 11","Error 12",
-    "Error 13", "Error 14","Error 15","Error 16","Error 17","Error 18",
-    "Error: ADC out of range",
-    "Error: Current sensor failure",
-    "Error: Zero voltage after precharge",
-    "Error: Pack voltage too low after precharge",
-    "Error: Faulty throttle signal",
-    "Error: 12 Volt too high",
-    "Error: 12 Volt too low",
-    "Error: Pack voltage too high",
-    "Error: Pack voltage too low",
-    "Error: IGBT desaturation",
-    "Error: Out of memory",
-    "Error: Software error",
-    "Controller shut down by user"
-  };
+
   
 /**********************************************
  * Class: SolitonReader
