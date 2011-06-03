@@ -1,0 +1,15 @@
+To install the Red Cloud system, first make sure that
+MySQL is currently installed. 
+
+Navigate to RCAcquisition/src/build
+
+In dbconf modify the username to match your current
+MySQL install.
+
+Run: sudo ./install
+
+You are now able to run RCAcquisition from the command line with:
+$> RCAcquisition
+
+Where $> indicates a shell prompt, and RCAcquisition is the name
+of the application.
