@@ -14,14 +14,19 @@ mkdir "/usr/local/bin/RCAcquisition" 2>&1
 fi
 
 mv "bin/RCAcquisition" "/usr/local/bin/RCAcquisition" 2>&1
+mv "bin/VeloComm.py" "/usr/local/bin/RCAcquisition" 2>&1
+
 echo > "data.log" 2>&1
 echo > "logger.txt" 2>&1
 chmod a+w "data.log" 2>&1
 chmod a+w "logger.txt" 2>&1
 mv "data.log" "/usr/local/bin/RCAcquisition/"
 mv "logger.txt" "/usr/local/bin/RCAcquisition/"
-echo "RCAcquisition- Install Successful"
 
+echo "PATH=$PATH:/usr/local/bin/RCAcquisition" >> ~/.bashrc
+echo "export PATH" >> ~/.bashrc
+
+echo "Setting up MySQL databases..."
+./dbconf
 exit 0
-
 

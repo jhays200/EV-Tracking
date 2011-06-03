@@ -1,0 +1,6 @@
+uname="root"
+filename="sql.txt"
+
+mysql -u $uname -p << eof
+source $filename
+eof

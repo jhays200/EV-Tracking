@@ -1,0 +1,159 @@
+CREATE DATABASE RED_CLOUD;
+USE RED_CLOUD;
+
+CREATE TABLE TRIP
+(
+  Trip_ID int NOT NULL AUTO_INCREMENT,
+  Start_t time,
+  start_D date,
+  End_t time,
+  end_D date,
+  PRIMARY KEY (Trip_ID)
+);
+
+
+CREATE TABLE MOTOR_DATA
+(
+  MData_ID int NOT NULL AUTO_INCREMENT,
+  Trip_ID int REFERENCES Trip(Trip_ID),
+  Speed smallint,
+  AvgDutyCycles smallint,
+  RPM int,
+  CurrentAccross int,
+  MD_Time time,
+  MD_DAte date,
+  PRIMARY KEY (MData_ID)
+);
+
+CREATE TABLE GPS_DATA
+(
+  GPSData_ID int NOT NULL AUTO_INCREMENT,
+  Trip_ID int REFERENCES Trip(Trip_ID),
+  Longitude double,
+  Lattitude double,
+  Speed double,
+  Bearing double,
+    GPS_Time time,
+  GPS_DAte date,
+  PRIMARY KEY (GPSData_ID)
+);
+
+CREATE TABLE MESSAGES
+(
+  Message_ID int NOT NULL AUTO_INCREMENT,
+  Trip_ID int REFERENCES Trip(Trip_ID),
+  Content varchar(300),
+  Message_Time time,
+  Message_DAte date,
+  PRIMARY KEY (Message_ID)
+);
+
+CREATE TABLE BMS
+(
+  BMS_ID int NOT NULL AUTO_INCREMENT,
+  AvgVolts double,
+  AvgAmps double,
+  AvgResist double,
+  Charge int,
+  AvgTemp double,
+  BMS_Time time,
+  BMS_DAte date,
+  Trip_ID int REFERENCES Trip(Trip_ID),
+  PRIMARY KEY (BMS_ID)
+);
+
+CREATE TABLE BATTERY
+(
+  BMS_ID int REFERENCES BMS(BMS_ID),
+  Battery_ID int NOT NULL,
+  Volts double,
+  Amps double,
+  Resist double,
+  Temp double,
+  PRIMARY KEY (BMS_ID,Battery_ID)
+);
+
+delimiter //
+
+create procedure FIXDATA ()
+BEGIN
+      DECLARE now date;
+      DECLARE y INT DEFAULT 1;
+      declare bmg int;
+      set y = (select min(Trip_ID) from TRIP);
+     while DATEDIFF(CURDATE(),
+        (select start_d from TRIP where trip_id = y)) > 3 do
+        set bmg = (select BMS_ID from BMS where trip_ID = y);
+        delete from BATTERY where BMS_ID = bmg;
+        delete from BMS where trip_id = y;
+        delete from MESSAGES where trip_id = y;
+        delete from GPS_DATA where trip_id = y;
+        delete from MOTOR_DATA where trip_id = y;
+        delete from BMS where trip_id = y;
+        set y = (select min(trip_id) from TIME_DATA);
+     end while;
+ END //
+
+ create procedure endtripproc ()
+BEGIN
+      update TRIP set end_t = CURTIME() where trip_id = (select max(trip_id) from TRIP);
+          update TRIP set end_d = CURDATE() where trip_id = (select max(trip_id) from TRIP);
+ END //
+
+
+ create trigger InsertDelete after insert on TRIP
+ for each row
+ begin
+  call FIXDATA ();
+ end//
+
+ CREATE TRIGGER motor_insert BEFORE INSERT ON MOTOR_DATA
+FOR EACH ROW
+BEGIN
+SET NEW.md_time = CURTIME();
+SET NEW.md_date = CURDATE();
+END//
+
+  CREATE TRIGGER gps_insert BEFORE INSERT ON GPS_DATA
+FOR EACH ROW
+BEGIN
+SET NEW.GPS_time = CURTIME();
+SET NEW.GPS_date = CURDATE();
+END//
+
+  CREATE TRIGGER messages_insert BEFORE INSERT ON MESSAGES
+  for each row
+  BEGIN
+SET NEW.message_time = CURTIME();
+SET NEW.message_date = CURDATE();
+END//
+
+  CREATE TRIGGER bms_insert BEFORE INSERT ON BMS
+FOR EACH ROW
+BEGIN
+SET NEW.bms_time = CURTIME();
+SET NEW.bms_date = CURDATE();
+END//
+
+INSERT INTO TRIP (Start_t, End_t)
+  VALUES('12:13:14','16:01:23')//
+INSERT INTO MOTOR_DATA (trip_id, Speed, AvgDutyCycles, RPM, CurrentAccross)
+  VALUES(1, 55, 130, 1000, 250)//
+INSERT INTO GPS_DATA (trip_id, Longitude, Lattitude)
+  VALUES(1, 23.4, 23.4)//
+INSERT INTO BMS (AvgVolts, AvgAmps, AvgResist, Charge, AvgTemp, trip_id)
+  VALUES(500,500,500,86,94,1)//
+INSERT INTO BATTERY (BMS_ID, Battery_ID, Volts, Amps, Resist, Temp)
+  VALUES(1, 1, 500, 500, 500, 85)//
+INSERT INTO BATTERY (BMS_ID, Battery_ID, Volts, Amps, Resist, Temp)
+  VALUES(1, 2, 550, 550, 550, 90)//
+INSERT INTO BATTERY (BMS_ID, Battery_ID, Volts, Amps, Resist, Temp)
+  VALUES(1, 3, 456, 450, 450, 80)//
+
+
+CREATE USER 'system'@'localhost' identified by 'red_cloud'//
+GRANT insert on TRIP to 'system'@'localhost'//
+GRANT insert on MOTOR_DATA  to 'system'@'localhost'//
+GRANT insert on BMS to 'system'@'localhost'//
+GRANT insert on BATTERY to 'system'@'localhost'//
+GRANT insert on GPS_DATA to 'system'@'localhost'//
