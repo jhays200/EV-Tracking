@@ -1,0 +1,27 @@
+#!/bin/bash
+cmake ../ 2>&1
+make 2>&1
+
+if [ ! -w "/usr/local/bin" ]
+then
+echo "Need permission to access /usr/local/bin"
+exit 1
+fi
+
+if [ ! -d "/usr/local/bin/RCAcquisition" ];
+then
+mkdir "/usr/local/bin/RCAcquisition" 2>&1
+fi
+
+mv "bin/RCAcquisition" "/usr/local/bin/RCAcquisition" 2>&1
+echo > "data.log" 2>&1
+echo > "logger.txt" 2>&1
+chmod a+w "data.log" 2>&1
+chmod a+w "logger.txt" 2>&1
+mv "data.log" "/usr/local/bin/RCAcquisition/"
+mv "logger.txt" "/usr/local/bin/RCAcquisition/"
+echo "RCAcquisition- Install Successful"
+
+exit 0
+
+
