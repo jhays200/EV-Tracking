@@ -76,7 +76,10 @@ void RCAcquisition::Start()
 	{
 		cout << "Updating" << endl;
 		
-		//This 
+		/******************************************
+		This is where updates are added to get data
+		from iUpdateStradegy decendents.
+		********************************************/
 		
 		//m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[0]));
 		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[1]));
@@ -107,6 +110,11 @@ void RCAcquisition::Start()
 		//cout << "RPM: " << dataEM->GetRpm() << '\n'
 		//	 << "Speed: " << dataEM->GetSpeed() << endl;
 			 
+			 
+		/**************************************
+		This where data should be reported from
+		the system.
+		***************************************/
 		//velo->SetBMSref(dataBM);
 		velo->SetMotorRef(dataEM);
 		velo->Report();
