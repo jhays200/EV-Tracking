@@ -75,6 +75,9 @@ void RCAcquisition::Start()
 	while(daemon)
 	{
 		cout << "Updating" << endl;
+		
+		//This 
+		
 		//m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[0]));
 		m_activeThreads.create_thread(boost::bind(&iUpdateStradegy::Update, m_updates[1]));
 		m_activeThreads.join_all();
